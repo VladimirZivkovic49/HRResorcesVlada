@@ -11,6 +11,8 @@ namespace HRResorcesVlada.Controllers
 
     public class RegularUserController : Controller
     {
+       
+
         [HttpGet()]
         public IActionResult GetRegularUsers()
 
@@ -20,20 +22,43 @@ namespace HRResorcesVlada.Controllers
 
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetRegularUser(int id)
+  
+        [HttpPost()]
+        public IActionResult CreateNewRegularUser(int Id, [FromBody] RegularUserForCreationDto newRegularUserss)
 
         {
-            var regularUserToReturn = RegularUserDataStore.Current.RegularUsers.FirstOrDefault(c => c.Id == id);
-            if(regularUserToReturn == null)
+            if (newRegularUserss == null)
+
+            {
+                return BadRequest();
+            }
+            var RegularUserss = RegularUserDataStore.Current.RegularUsers;
+
+            if (RegularUserss == null)
             {
                 return NotFound();
             }
+            
+            var maxRegularUsersId = RegularUserDataStore.Current.RegularUsers.Max(c => c.Id);
+            
+            var finalRegularuser = new RegularUserDto()
+            {
+                Id = ++ maxRegularUsersId,
+                Name = newRegularUserss.Name,
+                Surname = newRegularUserss.Surname,
+                City = newRegularUserss.City,
+                VilingToChangeLocation = newRegularUserss.VilingToChangeLocation,
+                FullTimeJob = newRegularUserss.FullTimeJob,
+                WorkExperience = newRegularUserss.WorkExperience,
+                KeyWords = newRegularUserss.KeyWords
 
-            return Ok(regularUserToReturn);
-                
-            }
+            };
+            RegularUserss.Add(finalRegularuser);
 
+
+            return CreatedAtRoute( new
+            { }, finalRegularuser);
         }
+    }
    }
 

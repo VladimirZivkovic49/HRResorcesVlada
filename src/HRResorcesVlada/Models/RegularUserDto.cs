@@ -7,7 +7,7 @@ namespace HRResorcesVlada.Models
 {
     public class RegularUserDto
     {
-        public int  Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string City { get; set; }
@@ -15,8 +15,19 @@ namespace HRResorcesVlada.Models
         public string FullTimeJob { get; set; }
         public string WorkExperience { get; set; }
         public string KeyWords { get; set; }
+     
+        
+        /*  public int NumberOfRegularUser { get
 
+            {
+                return RegularUserLA.Count;
+            }
 
+         }*/
+      
+        
+        
+        
         /* public string Education { get; set; }
          public string SchoolName { get; set; }
          public string SchoolCity { get; set; }

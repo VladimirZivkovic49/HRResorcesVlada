@@ -21,8 +21,20 @@ namespace HRResorcesVlada.Controllers
             return Ok(CompanyDataStore.Current.Companies);
 
         }
+       /*   [HttpGet("{id}")]
+        public IActionResult GetCompany(int id)
+        {
+            var companyToReturn = CompanyDataStore.Current.Companies.FirstOrDefault(c => c.Id==id);
+           
+            if (companyToReturn == null)
+            {
+                return NotFound();
 
-      /*   [HttpPost()]
+            }
+            return Ok(companyToReturn);
+                
+        }*/
+        [HttpPost()]
         public IActionResult CreateNewCompany(int Id, [FromBody] CompanyForCreationDto newCompanys)
 
         {
@@ -57,7 +69,7 @@ namespace HRResorcesVlada.Controllers
 
             return CreatedAtRoute( new
             { }, finalCompany);
-        }*/
+        }
 
     }
 }

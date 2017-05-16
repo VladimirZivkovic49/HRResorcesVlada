@@ -9,7 +9,7 @@ namespace HRResorcesVlada.Models
     {
         public static JobPositionDataStore Current { get; } = new JobPositionDataStore();
         public List<JobPositionDto> JobPositions { get; set; }
-
+        public string JobPosition { get; set; }
         public JobPositionDataStore()
         {
             JobPositions = new List<JobPositionDto>()

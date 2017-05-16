@@ -11,7 +11,7 @@ namespace HRResorcesVlada.Controllers
 
     public class RegularUserController : Controller
     {
-       
+
 
         [HttpGet()]
         public IActionResult GetRegularUsers()
@@ -22,8 +22,23 @@ namespace HRResorcesVlada.Controllers
 
         }
 
-  
-       [HttpPost()]
+      /*  [HttpGet("{id}")]
+        public IActionResult GetRegularUser(int id)
+        {
+            var regularUserToReturn = RegularUserDataStore.Current.RegularUsers.FirstOrDefault(c => c.Id==id);
+           
+            if (regularUserToReturn == null)
+            {
+                return NotFound();
+
+            }
+            return Ok(regularUserToReturn);
+                
+        }*/
+
+
+
+        [HttpPost()]
         public IActionResult CreateNewRegularUser(int Id, [FromBody] RegularUserForCreationDto newRegularUserss)
 
         {

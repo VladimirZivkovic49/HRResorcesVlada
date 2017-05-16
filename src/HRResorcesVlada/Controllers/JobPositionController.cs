@@ -20,7 +20,29 @@ namespace HRResorcesVlada.Controllers
             return Ok(JobPositionDataStore.Current.JobPositions);
 
         }
-            public IActionResult CreateNewJobPosition(int Id, [FromBody] JobPositionForCreationDto newJobPositionss)
+          [HttpGet("{id}")]
+        public IActionResult GetJobPosition(int id)
+        {
+            var jobPositionToReturn = JobPositionDataStore.Current.JobPositions.FirstOrDefault(c => c.Id==id);
+           
+            if (jobPositionToReturn == null)
+            {
+                return NotFound();
+
+            }
+            return Ok(jobPositionToReturn);
+                
+        }
+
+
+
+
+
+
+
+
+        [HttpPost()]
+        public IActionResult CreateNewJobPosition(int Id, [FromBody] JobPositionForCreationDto newJobPositionss)
 
                 {
                     if (newJobPositionss == null)

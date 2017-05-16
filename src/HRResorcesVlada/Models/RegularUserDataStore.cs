@@ -10,10 +10,12 @@ namespace HRResorcesVlada.Models
         public static RegularUserDataStore Current { get; } = new RegularUserDataStore();
         public List<RegularUserDto> RegularUsers { get; set; }
 
+        public string  RegularUser { get; set; }
         public RegularUserDataStore()
         {
             RegularUsers = new List<RegularUserDto>()
             {
+
 
                 new RegularUserDto()
                 {

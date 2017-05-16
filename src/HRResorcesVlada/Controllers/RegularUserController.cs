@@ -23,7 +23,7 @@ namespace HRResorcesVlada.Controllers
         }
 
   
-        [HttpPost()]
+       [HttpPost()]
         public IActionResult CreateNewRegularUser(int Id, [FromBody] RegularUserForCreationDto newRegularUserss)
 
         {

@@ -169,9 +169,13 @@ E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Program.cs
 E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Startup.cs
 E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Controllers\RegularUserController.cs
 E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Controllers\CompanyController.cs
+E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Controllers\JobPositionController.cs
 E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Models\RegularUserDto.cs
 E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Models\RegularUserForCreationDto.cs
 E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Models\CompanyDataStore.cs
 E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Models\RegularUserDataStore.cs
 E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Models\CompanyDto.cs
 E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Models\CompanyForCreationDto.cs
+E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Models\JobPositionDto.cs
+E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Models\JobPositionDataStore.cs
+E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Models\JobPositionForCreationDto.cs

@@ -7,7 +7,7 @@ namespace HRResorcesVlada.Models
 {
     public class CompanyDataStore
     {
-         public static CompanyDataStore Current { get; } = new CompanyDataStore();
+        public static CompanyDataStore Current { get; } = new CompanyDataStore();
         public List<CompanyDto> Companies { get; set; }
 
         public CompanyDataStore()

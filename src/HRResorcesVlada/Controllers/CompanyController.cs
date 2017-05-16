@@ -13,7 +13,7 @@ namespace HRResorcesVlada.Controllers
     {
 
 
-        [HttpGet()]
+       [HttpGet()]
         public IActionResult GetCompanies()
 
         {
@@ -22,7 +22,7 @@ namespace HRResorcesVlada.Controllers
 
         }
 
-         [HttpPost()]
+      /*   [HttpPost()]
         public IActionResult CreateNewCompany(int Id, [FromBody] CompanyForCreationDto newCompanys)
 
         {
@@ -57,7 +57,7 @@ namespace HRResorcesVlada.Controllers
 
             return CreatedAtRoute( new
             { }, finalCompany);
-        }
+        }*/
 
     }
 }

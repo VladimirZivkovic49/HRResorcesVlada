@@ -1,4 +1,5 @@
 ﻿using HRResorcesVlada.Models;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -104,7 +105,45 @@ namespace HRResorcesVlada.Controllers
             return NoContent();
 
         }
-       
+        [HttpPatch("{Id}")]
+        public IActionResult UpdateRegularUser(int id,
+          [FromBody]JsonPatchDocument<RegularUserForUpdateDto> patchDoc)
+        {
+            if (patchDoc == null)
+            {
+
+                BadRequest();
+            }
+            var RegularUsersFromStore = RegularUserDataStore.Current.RegularUsers.FirstOrDefault(p => p.Id == id);
+
+            if (RegularUsersFromStore == null)
+            {
+                return NotFound();
+            }
+            var regularUserToPatch = new RegularUserForUpdateDto()
+            {
+                Name = RegularUsersFromStore.Name,
+                Surname = RegularUsersFromStore.Surname,
+                City = RegularUsersFromStore.City,
+                VilingToChangeLocation = RegularUsersFromStore.VilingToChangeLocation,
+                FullTimeJob = RegularUsersFromStore.FullTimeJob,
+                WorkExperience = RegularUsersFromStore.WorkExperience,
+                KeyWords = RegularUsersFromStore.KeyWords
+
+            };
+
+            patchDoc.ApplyTo(regularUserToPatch);
+
+            RegularUsersFromStore.Name = regularUserToPatch.Name;
+            RegularUsersFromStore.Surname = regularUserToPatch.Surname;
+            RegularUsersFromStore.City = regularUserToPatch.City;
+            RegularUsersFromStore.VilingToChangeLocation = regularUserToPatch.VilingToChangeLocation;
+            RegularUsersFromStore.FullTimeJob = regularUserToPatch.FullTimeJob;
+            RegularUsersFromStore.WorkExperience = regularUserToPatch.WorkExperience;
+            RegularUsersFromStore.KeyWords = regularUserToPatch.KeyWords;
+
+            return NoContent();
+        }
     }
 }
 

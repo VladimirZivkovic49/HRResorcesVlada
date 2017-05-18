@@ -22,19 +22,19 @@ namespace HRResorcesVlada.Controllers
 
         }
 
-      /*  [HttpGet("{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetRegularUser(int id)
         {
-            var regularUserToReturn = RegularUserDataStore.Current.RegularUsers.FirstOrDefault(c => c.Id==id);
-           
+            var regularUserToReturn = RegularUserDataStore.Current.RegularUsers.FirstOrDefault(c => c.Id == id);
+
             if (regularUserToReturn == null)
             {
                 return NotFound();
 
             }
             return Ok(regularUserToReturn);
-                
-        }*/
+
+        }
 
 
 
@@ -53,12 +53,12 @@ namespace HRResorcesVlada.Controllers
             {
                 return NotFound();
             }
-            
+
             var maxRegularUsersId = RegularUserDataStore.Current.RegularUsers.Max(c => c.Id);
-            
+
             var finalRegularuser = new RegularUserDto()
             {
-                Id = ++ maxRegularUsersId,
+                Id = ++maxRegularUsersId,
                 Name = newRegularUserss.Name,
                 Surname = newRegularUserss.Surname,
                 City = newRegularUserss.City,
@@ -71,9 +71,40 @@ namespace HRResorcesVlada.Controllers
             RegularUserss.Add(finalRegularuser);
 
 
-            return CreatedAtRoute( new
+            return CreatedAtRoute(new
             { }, finalRegularuser);
         }
+
+        [HttpPut("{Id}")]
+        public IActionResult UpdateRegularUser(int id,
+     [FromBody] RegularUserForUpdateDto newRegularUserss)
+        {
+            if (newRegularUserss == null)
+
+            {
+                return BadRequest();
+            }
+
+            var RegularUsersFromStore = RegularUserDataStore.Current.RegularUsers.FirstOrDefault(p =>p.Id==id);
+
+            if (RegularUsersFromStore == null)
+            {
+                return NotFound();
+            }
+            RegularUsersFromStore.Name = newRegularUserss.Name;
+            RegularUsersFromStore.Surname = newRegularUserss.Surname;
+            RegularUsersFromStore.City = newRegularUserss.City;
+            RegularUsersFromStore.VilingToChangeLocation = newRegularUserss.VilingToChangeLocation;
+            RegularUsersFromStore.FullTimeJob = newRegularUserss.FullTimeJob;
+            RegularUsersFromStore.WorkExperience = newRegularUserss.WorkExperience;
+            RegularUsersFromStore.KeyWords = newRegularUserss.KeyWords;
+
+
+
+            return NoContent();
+
+        }
+       
     }
-   }
+}
 

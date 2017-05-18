@@ -76,7 +76,7 @@ namespace HRResorcesVlada.Controllers
             { }, finalRegularuser);
         }
 
-        [HttpPut("{Id}")]
+       [HttpPut("{Id}")]
         public IActionResult UpdateRegularUser(int id,
      [FromBody] RegularUserForUpdateDto newRegularUserss)
         {
@@ -105,7 +105,8 @@ namespace HRResorcesVlada.Controllers
             return NoContent();
 
         }
-        [HttpPatch("{Id}")]
+
+       [HttpPatch("{Id}")]
         public IActionResult UpdateRegularUser(int id,
           [FromBody]JsonPatchDocument<RegularUserForUpdateDto> patchDoc)
         {
@@ -144,6 +145,7 @@ namespace HRResorcesVlada.Controllers
 
             return NoContent();
         }
+
         [HttpDelete("{Id}")]
 
         public IActionResult deliteRegularUser(int id)

@@ -1,4 +1,5 @@
 ﻿using HRResorcesVlada.Models;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -78,6 +79,88 @@ namespace HRResorcesVlada.Controllers
                     { }, finalJobPosition);
                 }
 
+        [HttpPut("{Id}")]
+        public IActionResult UpdateJobPosition(int id,
+     [FromBody] JobPositionForUpdateDto newJobPositionss)
+        {
+            if (newJobPositionss == null)
 
+            {
+                return BadRequest();
+            }
+
+            var JobPositionsFromStore = JobPositionDataStore.Current.JobPositions.FirstOrDefault(p =>p.Id==id);
+
+            if (JobPositionsFromStore  == null)
+            {
+                return NotFound();
+            }
+            JobPositionsFromStore.Name = newJobPositionss.Name;
+            JobPositionsFromStore.Description = newJobPositionss.Description;
+            JobPositionsFromStore.City = newJobPositionss.City;
+            JobPositionsFromStore.Country = newJobPositionss.Country;
+            JobPositionsFromStore.PartTime = newJobPositionss.PartTime;
+            JobPositionsFromStore.KeyWords = newJobPositionss.KeyWords;
+
+
+
+            return NoContent();
+
+        }
+          [HttpPatch("{Id}")]
+                public IActionResult UpdateJobPosition(int id,
+                  [FromBody]JsonPatchDocument<JobPositionForUpdateDto> patchDoc)
+                {
+                    if (patchDoc == null)
+                    {
+
+                        BadRequest();
+                    }
+                    var JobPositionFromStore = JobPositionDataStore.Current.JobPositions.FirstOrDefault(p => p.Id == id);
+
+                    if (JobPositionFromStore == null)
+                    {
+                        return NotFound();
+                    }
+                    var jobPositionToPatch = new JobPositionForUpdateDto()
+                    {
+                        Name = JobPositionFromStore.Name,
+                        Description = JobPositionFromStore.Description,
+                        City = JobPositionFromStore.City,
+                        Country = JobPositionFromStore.Country,
+                        PartTime = JobPositionFromStore.PartTime,
+                        KeyWords = JobPositionFromStore.KeyWords
+
+                    };
+
+                    patchDoc.ApplyTo(jobPositionToPatch);
+
+            JobPositionFromStore.Name =jobPositionToPatch.Name;
+            JobPositionFromStore.Description = jobPositionToPatch.Description;
+            JobPositionFromStore.City = jobPositionToPatch.City;
+            JobPositionFromStore.PartTime = jobPositionToPatch.PartTime;
+            JobPositionFromStore.KeyWords = jobPositionToPatch.KeyWords;
+            JobPositionFromStore.Country = jobPositionToPatch.Country;
+                  
+                    return NoContent();
+                }
+
+          [HttpDelete("{Id}")]
+
+        public IActionResult deliteJobposition(int id)
+           
+       
+        {
+            var JobPositionDelite = JobPositionDataStore.Current.JobPositions.FirstOrDefault(c =>c.Id == id);
+
+            if (JobPositionDelite == null)
+            {
+                return NotFound();
+            }
+
+            JobPositionDataStore.Current.JobPositions.Remove(JobPositionDelite);
+
+            return NoContent();
+        }
     }
 }

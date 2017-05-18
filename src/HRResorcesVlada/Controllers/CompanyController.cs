@@ -1,4 +1,5 @@
 ﻿using HRResorcesVlada.Models;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace HRResorcesVlada.Controllers
             return Ok(CompanyDataStore.Current.Companies);
 
         }
-       /*   [HttpGet("{id}")]
+          [HttpGet("{id}")]
         public IActionResult GetCompany(int id)
         {
             var companyToReturn = CompanyDataStore.Current.Companies.FirstOrDefault(c => c.Id==id);
@@ -33,7 +34,7 @@ namespace HRResorcesVlada.Controllers
             }
             return Ok(companyToReturn);
                 
-        }*/
+        }
         [HttpPost()]
         public IActionResult CreateNewCompany(int Id, [FromBody] CompanyForCreationDto newCompanys)
 
@@ -70,6 +71,95 @@ namespace HRResorcesVlada.Controllers
             return CreatedAtRoute( new
             { }, finalCompany);
         }
+         [HttpPut("{Id}")]
+                public IActionResult UpdateCompany(int id,
+             [FromBody] CompanyForUpdateDto newCompanys)
+                {
+                    if (newCompanys == null)
+
+                    {
+                        return BadRequest();
+                    }
+
+                    var CompanyFromStore = CompanyDataStore.Current.Companies.FirstOrDefault(p =>p.Id==id);
+
+                    if (CompanyFromStore == null)
+                    {
+                        return NotFound();
+                    }
+                    CompanyFromStore.Name = newCompanys.Name;
+                    CompanyFromStore.Description =newCompanys.Description;
+                    CompanyFromStore.City = newCompanys.City;
+                    CompanyFromStore.Country = newCompanys.Country;
+                    CompanyFromStore.Phone = newCompanys.Phone;
+                    CompanyFromStore.EmailAdress = newCompanys.EmailAdress;
+                    CompanyFromStore.WebSite = newCompanys.WebSite;
+
+
+
+            return NoContent();
+
+                }
+
+        [HttpPatch("{Id}")]
+       
+        public IActionResult UpdateCompany(int id,
+          [FromBody]JsonPatchDocument<CompanyForUpdateDto> patchDoc)
+        {
+            if (patchDoc == null)
+            {
+
+                BadRequest();
+            }
+            var CompanyFromStore = CompanyDataStore.Current.Companies.FirstOrDefault(p => p.Id == id);
+
+            if (CompanyFromStore == null)
+            {
+                return NotFound();
+            }
+            var companyToPatch = new CompanyForUpdateDto()
+            {
+                Name = CompanyFromStore.Name,
+                Description = CompanyFromStore.Description,
+                City = CompanyFromStore.City,
+                Country = CompanyFromStore.Country,
+                Phone = CompanyFromStore.Phone,
+                EmailAdress = CompanyFromStore.EmailAdress,
+                WebSite = CompanyFromStore. WebSite
+
+            };
+
+            patchDoc.ApplyTo(companyToPatch);
+
+            CompanyFromStore.Name = companyToPatch.Name;
+            CompanyFromStore.Description = companyToPatch.Description;
+            CompanyFromStore.City = companyToPatch.City;
+            CompanyFromStore.Country= companyToPatch.Country;
+            CompanyFromStore.Phone= companyToPatch.Phone;
+            CompanyFromStore.EmailAdress = companyToPatch.EmailAdress;
+            CompanyFromStore.WebSite = companyToPatch.WebSite;
+            
+
+            return NoContent();
+        }
+          [HttpDelete("{Id}")]
+
+        public IActionResult deliteCompany(int id)
+           
+       
+        {
+            var CompanyDelite = CompanyDataStore.Current.Companies.FirstOrDefault(c =>c.Id == id);
+
+            if (CompanyDelite == null)
+            {
+                return NotFound();
+            }
+
+            CompanyDataStore.Current.Companies.Remove(CompanyDelite );
+
+            return NoContent();
+        }
+
 
     }
 }

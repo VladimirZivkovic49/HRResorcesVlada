@@ -176,3 +176,5 @@
 "E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Models\JobPositionDataStore.cs"
 "E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Models\JobPositionForCreationDto.cs"
 "E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Models\RegularUserForUpdateDto.cs"
+"E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Models\CompanyForUpdateDto.cs"
+"E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Models\JobPositionForUpdateDto.cs"

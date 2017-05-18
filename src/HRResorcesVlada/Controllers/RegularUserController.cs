@@ -144,6 +144,25 @@ namespace HRResorcesVlada.Controllers
 
             return NoContent();
         }
+        [HttpDelete("{Id}")]
+
+        public IActionResult deliteRegularUser(int id)
+           
+       
+        {
+            var RegularUserDelite = RegularUserDataStore.Current.RegularUsers.FirstOrDefault(c =>c.Id == id);
+
+            if (RegularUserDelite == null)
+            {
+                return NotFound();
+            }
+
+            RegularUserDataStore.Current.RegularUsers.Remove(RegularUserDelite);
+
+            return NoContent();
+        }
+
+
     }
 }
 

@@ -15,8 +15,9 @@ namespace HRResorcesVlada.Models
         public string FullTimeJob { get; set; }
         public string WorkExperience { get; set; }
         public string KeyWords { get; set; }
-     
+
         
+
         /*  public int NumberOfRegularUser { get
 
             {
@@ -24,10 +25,10 @@ namespace HRResorcesVlada.Models
             }
 
          }*/
-      
-        
-        
-        
+
+
+
+
         /* public string Education { get; set; }
          public string SchoolName { get; set; }
          public string SchoolCity { get; set; }

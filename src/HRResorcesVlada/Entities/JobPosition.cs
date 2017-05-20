@@ -5,23 +5,25 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HRResorcesVlada.Models
+namespace HRResorcesVlada.Entities
 {
-    public class CompanyDto
+    public class JobPosition
     {
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        
         public string Name { get; set; }
         public string Description { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
-        public string Phone { get; set; }
-        public string EmailAdress { get; set; }
-        public string WebSite { get; set; }
-        
+        public string PartTime { get; set; }
+        public string KeyWords { get; set; }
 
+        [ForeignKey("CompanyName")]
+        public Company Company { get; set; }
 
+        public string CompanyName { get; set; }
 
     }
 }

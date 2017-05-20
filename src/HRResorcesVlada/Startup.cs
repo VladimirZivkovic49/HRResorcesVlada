@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using HRResorcesVlada.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace HRResorcesVlada
 {
@@ -20,6 +22,8 @@ namespace HRResorcesVlada
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            var connectionString = @"Server=(localdb)\mssqllocaldb;Database=HrResorcesDB;Trusted_Connection=true;";
+            services.AddDbContext<HrResorcesContext>(o => o.UseSqlServer(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

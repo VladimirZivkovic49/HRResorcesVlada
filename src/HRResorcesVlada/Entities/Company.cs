@@ -5,13 +5,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HRResorcesVlada.Models
+namespace HRResorcesVlada.Entities
 {
-    public class CompanyDto
+    public class Company
     {
-
         public int Id { get; set; }
-        
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public string Name { get; set; }
         public string Description { get; set; }
         public string City { get; set; }
@@ -19,9 +20,9 @@ namespace HRResorcesVlada.Models
         public string Phone { get; set; }
         public string EmailAdress { get; set; }
         public string WebSite { get; set; }
-        
 
-
+        public ICollection<JobPosition> JobsPosition { get; set; } =
+            new List<JobPosition>();
 
     }
 }

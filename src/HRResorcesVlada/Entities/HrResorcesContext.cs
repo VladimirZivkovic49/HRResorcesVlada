@@ -11,8 +11,10 @@ namespace HRResorcesVlada.Entities
     {
 public  HrResorcesContext(DbContextOptions<HrResorcesContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            Database.Migrate();
         }
+
+        public DbSet<RegularUser> RegularUsers { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<JobPosition>Jobpositions { get; set; }
 

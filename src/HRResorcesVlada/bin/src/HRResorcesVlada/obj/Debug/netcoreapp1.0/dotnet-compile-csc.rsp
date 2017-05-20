@@ -7,8 +7,8 @@
 -debug:full
 -nostdlib
 -nologo
-"E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
--out:"E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\bin\Debug\netcoreapp1.0\HRResorcesVlada.dll"
+"E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\bin\src\HRResorcesVlada\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
+-out:"E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\bin\src\HRResorcesVlada\bin\Debug\netcoreapp1.0\HRResorcesVlada.dll"
 -r:"C:\Users\DOIT_DOTNET_USER15\.nuget\packages\Microsoft.AspNetCore.Antiforgery\1.0.1\lib\netstandard1.3\Microsoft.AspNetCore.Antiforgery.dll"
 -r:"C:\Users\DOIT_DOTNET_USER15\.nuget\packages\Microsoft.AspNetCore.Authorization\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Authorization.dll"
 -r:"C:\Users\DOIT_DOTNET_USER15\.nuget\packages\Microsoft.AspNetCore.Cors\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Cors.dll"
@@ -188,13 +188,10 @@
 -r:"C:\Users\DOIT_DOTNET_USER15\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll"
 -r:"C:\Users\DOIT_DOTNET_USER15\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll"
 -r:"C:\Users\DOIT_DOTNET_USER15\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll"
--resource:"E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\obj\Debug\netcoreapp1.0\HRResorcesVladadotnet-compile.deps.json",HRResorcesVlada.deps.json
+-resource:"E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\bin\src\HRResorcesVlada\obj\Debug\netcoreapp1.0\HRResorcesVladadotnet-compile.deps.json",HRResorcesVlada.deps.json
 "E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Program.cs"
 "E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\HrResorcesExtensions.cs"
 "E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Startup.cs"
-"E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Migrations\20170520121137_HrRecorsesInitialMigration.cs"
-"E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Migrations\20170520121137_HrRecorsesInitialMigration.Designer.cs"
-"E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Migrations\HrResorcesContextModelSnapshot.cs"
 "E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Controllers\RegularUserController.cs"
 "E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Controllers\CompanyController.cs"
 "E:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Controllers\JobPositionController.cs"

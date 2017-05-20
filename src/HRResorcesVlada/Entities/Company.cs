@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace HRResorcesVlada.Entities
 {
     public class Company
+
     {
         public int Id { get; set; }
         [Key]

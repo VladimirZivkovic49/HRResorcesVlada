@@ -46,7 +46,7 @@ namespace HRResorcesVlada
    
        };
 
-         /*   if (context.RegularUsers.Any())
+          if (context.RegularUsers.Any())
             {
                 return;
             }
@@ -69,7 +69,7 @@ namespace HRResorcesVlada
            
             
             
-            };*/
+            };
 
 
 
@@ -77,7 +77,7 @@ namespace HRResorcesVlada
 
 
             context.Companies.AddRange(companies);
-           // context.RegularUsers.AddRange(regularUsers);
+            context.RegularUsers.AddRange(regularUsers);
 
             context.SaveChanges();
 

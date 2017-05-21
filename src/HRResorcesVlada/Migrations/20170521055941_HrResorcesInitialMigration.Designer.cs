@@ -8,8 +8,8 @@ using HRResorcesVlada.Entities;
 namespace HRResorcesVlada.Migrations
 {
     [DbContext(typeof(HrResorcesContext))]
-    [Migration("20170520121137_HrRecorsesInitialMigration")]
-    partial class HrRecorsesInitialMigration
+    [Migration("20170521055941_HrResorcesInitialMigration")]
+    partial class HrResorcesInitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -97,7 +97,7 @@ namespace HRResorcesVlada.Migrations
 
             modelBuilder.Entity("HRResorcesVlada.Entities.JobPosition", b =>
                 {
-                    b.HasOne("HRResorcesVlada.Entities.RegularUser", "Company")
+                    b.HasOne("HRResorcesVlada.Entities.JobPosition", "Company")
                         .WithMany()
                         .HasForeignKey("CompanyId");
 

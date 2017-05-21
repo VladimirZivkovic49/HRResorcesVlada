@@ -21,7 +21,7 @@ namespace HRResorcesVlada.Entities
         public string KeyWords { get; set; }
 
         
-        public RegularUser Company { get; set; }
+        public JobPosition Company { get; set; }
 
         public string CompanyName { get; set; }
 

@@ -96,7 +96,7 @@ namespace HRResorcesVlada.Migrations
 
             modelBuilder.Entity("HRResorcesVlada.Entities.JobPosition", b =>
                 {
-                    b.HasOne("HRResorcesVlada.Entities.RegularUser", "Company")
+                    b.HasOne("HRResorcesVlada.Entities.JobPosition", "Company")
                         .WithMany()
                         .HasForeignKey("CompanyId");
 

@@ -10,6 +10,7 @@ namespace HRResorcesVlada.Entities
     public class Company
 
     {
+        
         public int Id { get; set; }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

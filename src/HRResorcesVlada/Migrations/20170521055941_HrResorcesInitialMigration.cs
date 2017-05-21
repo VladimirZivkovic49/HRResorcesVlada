@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace HRResorcesVlada.Migrations
 {
-    public partial class HrRecorsesInitialMigration : Migration
+    public partial class HrResorcesInitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -65,9 +65,9 @@ namespace HRResorcesVlada.Migrations
                 {
                     table.PrimaryKey("PK_Jobpositions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Jobpositions_RegularUsers_CompanyId",
+                        name: "FK_Jobpositions_Jobpositions_CompanyId",
                         column: x => x.CompanyId,
-                        principalTable: "RegularUsers",
+                        principalTable: "Jobpositions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(

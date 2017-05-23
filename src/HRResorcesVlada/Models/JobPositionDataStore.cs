@@ -18,12 +18,12 @@ namespace HRResorcesVlada.Models
                 new JobPositionDto()
                 {
             Id=1,
-            Name="Front end",
+            Name="Back end",
             Description ="Java",
             City="Novi Sad",
             Country="Serbia",
-            PartTime="Da",
-            KeyWords=" Iskustvo 5 god",
+            PartTime="Part time",
+            KeyWords="Iskustvo 5 god",
 
 
             },
@@ -32,14 +32,32 @@ namespace HRResorcesVlada.Models
                 {
 
             Id=2,
-            Name="Back end",
-            Description ="C#",
+            Name="Front end",
+            Description ="C sharp",
             City="Atina",
             Country="Greace",
-            PartTime="Ne",
-            KeyWords=" Iskustvo 1 god",
-                 }
-             };
+            PartTime="Full time",
+            KeyWords="Iskustvo 1 god"
+
+
+            },
+
+                new JobPositionDto()
+                {
+
+            Id=3,
+            Name="Back end",
+            Description ="Java",
+            City="Atina",
+            Country="Greace",
+            PartTime="Part time",
+            KeyWords="Iskustvo 1 god"
+
+                },
+
+
+
+            };
         }
     }
 }

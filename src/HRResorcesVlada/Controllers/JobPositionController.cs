@@ -13,7 +13,7 @@ namespace HRResorcesVlada.Controllers
     public class JobPositionController : Controller
     {
 
-           [HttpGet()]
+        [HttpGet()]
         public IActionResult GetJobPisitions()
 
         {
@@ -21,27 +21,70 @@ namespace HRResorcesVlada.Controllers
             return Ok(JobPositionDataStore.Current.JobPositions);
 
         }
-          [HttpGet("{id}")]
+
+      /*  [HttpGet("id")]
         public IActionResult GetJobPosition(int id)
         {
-            var jobPositionToReturn = JobPositionDataStore.Current.JobPositions.FirstOrDefault(c => c.Id==id);
-           
+            var jobPositionToReturn = JobPositionDataStore.Current.JobPositions.FirstOrDefault(c => c.Id == id);
+
             if (jobPositionToReturn == null)
             {
                 return NotFound();
 
             }
             return Ok(jobPositionToReturn);
-                
+        }*/
+     
+       [HttpGet("{city}")]
+        public IActionResult GetJobPositionscity(string city)
+        {
+            var jobPositionToReturn = JobPositionDataStore.Current.JobPositions.FindAll(c=>c.City==city);
+
+            if (jobPositionToReturn.Count == 0)
+
+            {
+
+             var jobPositionToReturnKeyWords = JobPositionDataStore.Current.JobPositions.FindAll(c => c.Country == city);
+
+             if (jobPositionToReturnKeyWords.Count == 0)
+
+                {
+
+               var jobPositionToReturnKeyWord = JobPositionDataStore.Current.JobPositions.FindAll(c => c.KeyWords == city);
+
+               if (jobPositionToReturnKeyWord.Count == 0)
+
+                    {
+
+                   var jobPositionToReturnFullTime = JobPositionDataStore.Current.JobPositions.FindAll(c => c.PartTime == city);
+
+                   if (jobPositionToReturnFullTime.Count == 0)
+
+                        {
+                            return NotFound();
+                        }
+
+                        return Ok(jobPositionToReturnFullTime);
+
+                    }
+
+                return Ok(jobPositionToReturnKeyWord);
+
+                }
+
+                return Ok(jobPositionToReturnKeyWords);
+            }
+
+            if (jobPositionToReturn.Count == 0)
+            {
+                return NotFound();
+
+            }
+            return Ok(jobPositionToReturn);
         }
 
-
-
-
-
-
-
-
+      
+    
         [HttpPost()]
         public IActionResult CreateNewJobPosition(int Id, [FromBody] JobPositionForCreationDto newJobPositionss)
 

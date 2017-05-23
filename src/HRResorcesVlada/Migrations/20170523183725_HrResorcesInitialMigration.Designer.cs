@@ -8,7 +8,7 @@ using HRResorcesVlada.Entities;
 namespace HRResorcesVlada.Migrations
 {
     [DbContext(typeof(HrResorcesContext))]
-    [Migration("20170521055941_HrResorcesInitialMigration")]
+    [Migration("20170523183725_HrResorcesInitialMigration")]
     partial class HrResorcesInitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,7 +19,7 @@ namespace HRResorcesVlada.Migrations
 
             modelBuilder.Entity("HRResorcesVlada.Entities.Company", b =>
                 {
-                    b.Property<string>("Name")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("City");
@@ -30,13 +30,13 @@ namespace HRResorcesVlada.Migrations
 
                     b.Property<string>("EmailAdress");
 
-                    b.Property<int>("Id");
+                    b.Property<string>("Name");
 
                     b.Property<string>("Phone");
 
                     b.Property<string>("WebSite");
 
-                    b.HasKey("Name");
+                    b.HasKey("Id");
 
                     b.ToTable("Companies");
                 });
@@ -49,6 +49,8 @@ namespace HRResorcesVlada.Migrations
                     b.Property<string>("City");
 
                     b.Property<int?>("CompanyId");
+
+                    b.Property<int?>("CompanyId1");
 
                     b.Property<string>("CompanyName");
 
@@ -66,7 +68,7 @@ namespace HRResorcesVlada.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.HasIndex("CompanyName");
+                    b.HasIndex("CompanyId1");
 
                     b.ToTable("Jobpositions");
                 });
@@ -103,7 +105,7 @@ namespace HRResorcesVlada.Migrations
 
                     b.HasOne("HRResorcesVlada.Entities.Company")
                         .WithMany("JobsPosition")
-                        .HasForeignKey("CompanyName");
+                        .HasForeignKey("CompanyId1");
                 });
         }
     }

@@ -43,7 +43,31 @@ namespace HRResorcesVlada
             KeyWords=" Iskustvo 5 god", }
             }
          },
-   
+
+               new Company()
+
+           {
+            Name="DEG",
+            Description ="Software",
+            City="Atina",
+            Country="Greace",
+            Phone="1111111",
+            EmailAdress=" DEG@co",
+            WebSite="www.DEG",
+            JobsPosition= new List<JobPosition>()
+            {
+
+            new JobPosition()
+            {
+
+            Name="Back end",
+            Description ="C sharp",
+            City="Atina",
+            Country="Greace",
+            PartTime="Da",
+            KeyWords=" Iskustvo 3 god", }
+            }
+         },
        };
 
           if (context.RegularUsers.Any())

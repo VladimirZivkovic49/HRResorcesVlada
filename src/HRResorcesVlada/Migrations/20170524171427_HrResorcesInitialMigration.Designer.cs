@@ -8,7 +8,7 @@ using HRResorcesVlada.Entities;
 namespace HRResorcesVlada.Migrations
 {
     [DbContext(typeof(HrResorcesContext))]
-    [Migration("20170523183725_HrResorcesInitialMigration")]
+    [Migration("20170524171427_HrResorcesInitialMigration")]
     partial class HrResorcesInitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,7 +19,7 @@ namespace HRResorcesVlada.Migrations
 
             modelBuilder.Entity("HRResorcesVlada.Entities.Company", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<string>("Name")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("City");
@@ -30,13 +30,11 @@ namespace HRResorcesVlada.Migrations
 
                     b.Property<string>("EmailAdress");
 
-                    b.Property<string>("Name");
-
                     b.Property<string>("Phone");
 
                     b.Property<string>("WebSite");
 
-                    b.HasKey("Id");
+                    b.HasKey("Name");
 
                     b.ToTable("Companies");
                 });
@@ -47,10 +45,6 @@ namespace HRResorcesVlada.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("City");
-
-                    b.Property<int?>("CompanyId");
-
-                    b.Property<int?>("CompanyId1");
 
                     b.Property<string>("CompanyName");
 
@@ -66,9 +60,7 @@ namespace HRResorcesVlada.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("CompanyId1");
+                    b.HasIndex("CompanyName");
 
                     b.ToTable("Jobpositions");
                 });
@@ -99,13 +91,9 @@ namespace HRResorcesVlada.Migrations
 
             modelBuilder.Entity("HRResorcesVlada.Entities.JobPosition", b =>
                 {
-                    b.HasOne("HRResorcesVlada.Entities.JobPosition", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId");
-
                     b.HasOne("HRResorcesVlada.Entities.Company")
                         .WithMany("JobsPosition")
-                        .HasForeignKey("CompanyId1");
+                        .HasForeignKey("CompanyName");
                 });
         }
     }

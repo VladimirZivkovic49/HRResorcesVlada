@@ -13,19 +13,17 @@ namespace HRResorcesVlada.Migrations
                 name: "Companies",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: false),
                     City = table.Column<string>(nullable: true),
                     Country = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     EmailAdress = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true),
                     Phone = table.Column<string>(nullable: true),
                     WebSite = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Companies", x => x.Id);
+                    table.PrimaryKey("PK_Companies", x => x.Name);
                 });
 
             migrationBuilder.CreateTable(
@@ -54,8 +52,6 @@ namespace HRResorcesVlada.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     City = table.Column<string>(nullable: true),
-                    CompanyId = table.Column<int>(nullable: true),
-                    CompanyId1 = table.Column<int>(nullable: true),
                     CompanyName = table.Column<string>(nullable: true),
                     Country = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
@@ -67,28 +63,17 @@ namespace HRResorcesVlada.Migrations
                 {
                     table.PrimaryKey("PK_Jobpositions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Jobpositions_Jobpositions_CompanyId",
-                        column: x => x.CompanyId,
-                        principalTable: "Jobpositions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Jobpositions_Companies_CompanyId1",
-                        column: x => x.CompanyId1,
+                        name: "FK_Jobpositions_Companies_CompanyName",
+                        column: x => x.CompanyName,
                         principalTable: "Companies",
-                        principalColumn: "Id",
+                        principalColumn: "Name",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Jobpositions_CompanyId",
+                name: "IX_Jobpositions_CompanyName",
                 table: "Jobpositions",
-                column: "CompanyId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Jobpositions_CompanyId1",
-                table: "Jobpositions",
-                column: "CompanyId1");
+                column: "CompanyName");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

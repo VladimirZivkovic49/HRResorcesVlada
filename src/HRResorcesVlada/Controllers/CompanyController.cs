@@ -1,4 +1,5 @@
 ﻿using HRResorcesVlada.Models;
+using HRResorcesVlada.Services;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,19 +11,52 @@ namespace HRResorcesVlada.Controllers
 {
     [Route("api/company")]
 
+   
+
     public class CompanyController : Controller
     {
+        private HrResorcesInterface _hrResorcesInterface;
 
+        public CompanyController(HrResorcesInterface hrResorcesInterface)
+        {
+            _hrResorcesInterface = hrResorcesInterface;
+        }
 
-       [HttpGet()]
+        [HttpGet()]
         public IActionResult GetCompanies()
 
         {
 
-            return Ok(CompanyDataStore.Current.Companies);
+            //  return Ok(CompanyDataStore.Current.Companies);
+            var companyEntities = _hrResorcesInterface.GetCompanies();
 
+            var results = new List<CompaniesWithoutJobPositionDto>();
+
+            foreach (var companyEntitie in companyEntities)
+            {
+                results.Add(new CompaniesWithoutJobPositionDto
+                {
+                    Name = companyEntitie.Name,
+                    Description = companyEntitie.Description,
+                    City = companyEntitie.City,
+                    Country = companyEntitie.Country,
+                    Phone = companyEntitie.Phone,
+                    EmailAdress = companyEntitie.EmailAdress,
+                    WebSite = companyEntitie.WebSite
+
+
+                });
+            }
+            return Ok(results);
         }
-          [HttpGet("{id}")]
+
+
+
+
+
+
+
+        [HttpGet("{id}")]
         public IActionResult GetCompany(int id)
         {
             var companyToReturn = CompanyDataStore.Current.Companies.FirstOrDefault(c => c.Id==id);

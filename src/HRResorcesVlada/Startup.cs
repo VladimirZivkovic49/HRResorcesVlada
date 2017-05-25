@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using HRResorcesVlada.Entities;
 using Microsoft.EntityFrameworkCore;
+using HRResorcesVlada.Services;
 
 namespace HRResorcesVlada
 {
@@ -24,6 +25,9 @@ namespace HRResorcesVlada
             services.AddMvc();
             var connectionString = @"Server=(localdb)\mssqllocaldb;Database=HrResorcesDB;Trusted_Connection=true;";
             services.AddDbContext<HrResorcesContext>(o => o.UseSqlServer(connectionString));
+            services.AddScoped<HrResorcesInterface, HrResorcesRepository>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

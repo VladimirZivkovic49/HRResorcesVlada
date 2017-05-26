@@ -1,4 +1,5 @@
-﻿using HRResorcesVlada.Models;
+﻿using AutoMapper;
+using HRResorcesVlada.Models;
 using HRResorcesVlada.Services;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -29,24 +30,25 @@ namespace HRResorcesVlada.Controllers
 
             //  return Ok(CompanyDataStore.Current.Companies);
             var companyEntities = _hrResorcesInterface.GetCompanies();
+            var results = Mapper.Map<IEnumerable<CompaniesWithoutJobPositionDto>>(companyEntities);
+            // var results = new List<CompaniesWithoutJobPositionDto>();
 
-            var results = new List<CompaniesWithoutJobPositionDto>();
-
-            foreach (var companyEntitie in companyEntities)
-            {
-                results.Add(new CompaniesWithoutJobPositionDto
-                {
-                    Name = companyEntitie.Name,
-                    Description = companyEntitie.Description,
-                    City = companyEntitie.City,
-                    Country = companyEntitie.Country,
-                    Phone = companyEntitie.Phone,
-                    EmailAdress = companyEntitie.EmailAdress,
-                    WebSite = companyEntitie.WebSite
+            /*  foreach (var companyEntitie in companyEntities)
+              {
+                  results.Add(new CompaniesWithoutJobPositionDto
+                  {
+                      Name = companyEntitie.Name,
+                      Description = companyEntitie.Description,
+                      City = companyEntitie.City,
+                      Country = companyEntitie.Country,
+                      Phone = companyEntitie.Phone,
+                      EmailAdress = companyEntitie.EmailAdress,
+                      WebSite = companyEntitie.WebSite
 
 
-                });
-            }
+                  });
+              }*/
+
             return Ok(results);
         }
 

@@ -46,6 +46,16 @@ namespace HRResorcesVlada
             }
             HrResorcesContext.EnsureSeedDataForContext();
             app.UseStatusCodePages();
+
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+
+                cfg.CreateMap<Entities.Company, Models.CompaniesWithoutJobPositionDto>();
+            });
+                
+                
+                
+                
             app.UseMvc();
 
 

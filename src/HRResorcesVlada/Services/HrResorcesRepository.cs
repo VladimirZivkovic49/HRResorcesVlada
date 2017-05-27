@@ -17,6 +17,13 @@ namespace HRResorcesVlada.Services
             _context = context;
         }
 
+        
+        public void AddNewCompany(string Name, Company newCompanys)
+        {
+            var company = GetCompany(Name);
+            company.Companies.Add(newCompanys);
+        }
+
         public IEnumerable<Company> GetCompanies()
         {
             return _context.Companies.OrderBy(c => c.Name).ToList();
@@ -35,6 +42,11 @@ namespace HRResorcesVlada.Services
         public IEnumerable<JobPosition> GetJobPositions()
         {
             return _context.Jobpositions.ToList();
+        }
+
+        public bool Save()
+        {
+            return (_context.SaveChanges() >= 0); 
         }
     }
 }

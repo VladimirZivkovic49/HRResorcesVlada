@@ -26,5 +26,8 @@ namespace HRResorcesVlada.Entities
         public ICollection<JobPosition> JobsPosition { get; set; } =
             new List<JobPosition>();
 
+        public ICollection<Company> Companies { get; set; } =
+           new List<Company>();
+
     }
 }

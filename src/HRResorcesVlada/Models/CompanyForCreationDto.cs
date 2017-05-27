@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace HRResorcesVlada.Models
 {
-    public class CompanyForCreationDto
+    public class CompaniesWithoutJobPositionsDto
     {
         public string Name { get; set; }
         public string Description { get; set; }

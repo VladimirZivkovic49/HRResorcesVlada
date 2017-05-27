@@ -50,7 +50,10 @@ namespace HRResorcesVlada
             AutoMapper.Mapper.Initialize(cfg =>
             {
 
-                cfg.CreateMap<Entities.Company, Models.CompaniesWithoutJobPositionDto>();
+                cfg.CreateMap<Entities.Company, Models.CompaniesWithoutJobPositionDto>().ReverseMap();
+                //cfg.CreateMap<Models.CompaniesWithoutJobPositionDto, Entities.Company>();
+
+
             });
                 
                 

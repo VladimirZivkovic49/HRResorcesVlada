@@ -71,8 +71,54 @@ namespace HRResorcesVlada.Controllers
             return Ok(companyToReturn);
                 
         }
+        
         [HttpPost()]
-        public IActionResult CreateNewCompany(int Id, [FromBody] CompanyForCreationDto newCompanys)
+        public IActionResult CreateNewCompany([FromBody] CompaniesWithoutJobPositionsDto newCompanys)
+
+        {
+            if (newCompanys == null)
+
+            {
+                return BadRequest();
+            }
+
+            string name = newCompanys.Name;
+
+            var Companys = CompanyDataStore.Current.Companies.FindAll(c => c.Name == name);
+
+            if (Companys.Count != 0)
+            {
+                return BadRequest("Ime postoji");
+            }
+
+            var finalCompany = Mapper.Map<Entities.Company>(newCompanys);
+
+            _hrResorcesInterface.AddNewCompany(name, finalCompany);
+
+            if (!_hrResorcesInterface.Save())
+
+            {
+                return StatusCode(500, "nije sačuvano");
+            }
+
+
+           
+
+
+            return CreatedAtRoute(new
+            { }, finalCompany);
+        }
+
+
+
+
+
+
+
+
+
+
+        /* public IActionResult CreateNewCompany(int Id, [FromBody] CompanyForCreationDto newCompanys)
 
         {
             if (newCompanys == null)
@@ -105,8 +151,8 @@ namespace HRResorcesVlada.Controllers
 
 
             return CreatedAtRoute( new
-            { }, finalCompany);
-        }
+            { }, finalCompany);*/
+   
          [HttpPut("{Id}")]
                 public IActionResult UpdateCompany(int id,
              [FromBody] CompanyForUpdateDto newCompanys)

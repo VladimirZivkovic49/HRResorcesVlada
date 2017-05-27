@@ -82,13 +82,18 @@ namespace HRResorcesVlada.Controllers
                 return BadRequest();
             }
 
-            string name = newCompanys.Name;
+              string name = newCompanys.Name;
 
-            var Companys = CompanyDataStore.Current.Companies.FindAll(c => c.Name == name);
+             /*  var Companys = CompanyDataStore.Current.Companies.FindAll(c => c.Name == name);
 
-            if (Companys.Count != 0)
+               if (Companys.Count != 0)
+               {
+                   return BadRequest("Ime postoji");
+               }*/
+            if (_hrResorcesInterface.CompanyExists(name))
             {
-                return BadRequest("Ime postoji");
+                return BadRequest("Postoji Kompanija  pod tim imenom");
+
             }
 
             var finalCompany = Mapper.Map<Entities.Company>(newCompanys);

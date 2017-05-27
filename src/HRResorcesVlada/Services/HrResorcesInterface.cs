@@ -14,5 +14,6 @@ namespace HRResorcesVlada.Services
         JobPosition GetJobPositio(int Id);
         void AddNewCompany(string Name,Company newCompanys);
         bool Save();
+        bool CompanyExists(string name);
     }
 }

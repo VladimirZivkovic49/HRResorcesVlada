@@ -15,7 +15,7 @@ namespace HRResorcesVlada.Models
             Companies = new List<CompanyDto>()
             {
 
-                new CompanyDto()
+              /*  new CompanyDto()
                 {
             Id=1,
             Name="ABC",
@@ -26,9 +26,9 @@ namespace HRResorcesVlada.Models
             EmailAdress=" ABC@co",
             WebSite="www.ABC"
 
-            },
+            },*/
 
-                 new CompanyDto()
+           /*      new CompanyDto()
                 {
 
              Id=2,
@@ -39,7 +39,7 @@ namespace HRResorcesVlada.Models
             Phone="2222222",
             EmailAdress=" CdC@co",
             WebSite="www.CDC"
-                 }
+                 }*/
              };
         }
 

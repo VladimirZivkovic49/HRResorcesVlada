@@ -24,6 +24,11 @@ namespace HRResorcesVlada.Services
             company.Companies.Add(newCompanys);
         }
 
+        public bool CompanyExists(string name)
+        {
+            return _context.Companies.Any(c => c.Name == name);
+        }
+
         public IEnumerable<Company> GetCompanies()
         {
             return _context.Companies.OrderBy(c => c.Name).ToList();

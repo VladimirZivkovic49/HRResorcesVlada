@@ -73,7 +73,8 @@ namespace HRResorcesVlada.Controllers
         }
         
         [HttpPost()]
-        public IActionResult CreateNewCompany([FromBody] CompaniesWithoutJobPositionsDto newCompanys)
+        public IActionResult CreateNewCompany([FromBody] CompaniesWithoutJobPositionDto newCompanys) //Oliver: Umesto CompaniesWithoutJobPositionDto 
+                                                                                                        //	si stavio CompaniesWithoutJobPositionsDto
 
         {
             if (newCompanys == null)

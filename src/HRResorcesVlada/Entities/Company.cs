@@ -18,6 +18,12 @@ namespace HRResorcesVlada.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public string City { get; set; }
+
+        internal void Add()
+        {
+            throw new NotImplementedException();
+        }
+
         public string Country { get; set; }
         public string Phone { get; set; }
         public string EmailAdress { get; set; }

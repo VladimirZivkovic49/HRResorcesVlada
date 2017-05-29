@@ -18,10 +18,9 @@ namespace HRResorcesVlada.Services
         }
 
         
-        public void AddNewCompany(string Name, Company newCompanys)
+        public void AddNewCompany( Company newCompanys)
         {
-            var company = GetCompany(Name);
-         //  company.Companies.Add(newCompanys);
+            _context.Companies.Add(newCompanys);
         }
 
         public bool CompanyExists(string name)

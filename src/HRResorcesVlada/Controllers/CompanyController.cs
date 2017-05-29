@@ -99,7 +99,7 @@ namespace HRResorcesVlada.Controllers
 
             var finalCompany = Mapper.Map<Entities.Company>(newCompanys);
 
-            _hrResorcesInterface.AddNewCompany(name, finalCompany);
+            _hrResorcesInterface.AddNewCompany( finalCompany);
 
             if (!_hrResorcesInterface.Save())
 

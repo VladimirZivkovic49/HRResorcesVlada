@@ -12,7 +12,7 @@ namespace HRResorcesVlada.Controllers
 {
     [Route("api/company")]
 
-   
+
 
     public class CompanyController : Controller
     {
@@ -61,20 +61,20 @@ namespace HRResorcesVlada.Controllers
         [HttpGet("{id}")]
         public IActionResult GetCompany(int id)
         {
-            var companyToReturn = CompanyDataStore.Current.Companies.FirstOrDefault(c => c.Id==id);
-           
+            var companyToReturn = CompanyDataStore.Current.Companies.FirstOrDefault(c => c.Id == id);
+
             if (companyToReturn == null)
             {
                 return NotFound();
 
             }
             return Ok(companyToReturn);
-                
+
         }
-        
+
         [HttpPost()]
         public IActionResult CreateNewCompany([FromBody] CompaniesWithoutJobPositionDto newCompanys) //Oliver: Umesto CompaniesWithoutJobPositionDto 
-                                                                                                        //	si stavio CompaniesWithoutJobPositionsDto
+                                                                                                     //	si stavio CompaniesWithoutJobPositionsDto
 
         {
             if (newCompanys == null)
@@ -83,14 +83,14 @@ namespace HRResorcesVlada.Controllers
                 return BadRequest();
             }
 
-              string name = newCompanys.Name;
+            string name = newCompanys.Name;
 
-             /*  var Companys = CompanyDataStore.Current.Companies.FindAll(c => c.Name == name);
+            /*  var Companys = CompanyDataStore.Current.Companies.FindAll(c => c.Name == name);
 
-               if (Companys.Count != 0)
-               {
-                   return BadRequest("Ime postoji");
-               }*/
+              if (Companys.Count != 0)
+              {
+                  return BadRequest("Ime postoji");
+              }*/
             if (_hrResorcesInterface.CompanyExists(name))
             {
                 return BadRequest("Postoji Kompanija  pod tim imenom");
@@ -99,7 +99,7 @@ namespace HRResorcesVlada.Controllers
 
             var finalCompany = Mapper.Map<Entities.Company>(newCompanys);
 
-            _hrResorcesInterface.AddNewCompany( finalCompany);
+            _hrResorcesInterface.AddNewCompany(finalCompany);
 
             if (!_hrResorcesInterface.Save())
 
@@ -108,7 +108,7 @@ namespace HRResorcesVlada.Controllers
             }
 
 
-           
+
 
 
             return CreatedAtRoute(new
@@ -158,36 +158,36 @@ namespace HRResorcesVlada.Controllers
 
             return CreatedAtRoute( new
             { }, finalCompany);*/
-   
-         [HttpPut("{Id}")]
-                public IActionResult UpdateCompany(int id,
-             [FromBody] CompanyForUpdateDto newCompanys)
-                {
-                    if (newCompanys == null)
 
-                    {
-                        return BadRequest();
-                    }
+        /*   [HttpPut("{Id}")]
+                  public IActionResult UpdateCompany(int id,
+               [FromBody] CompanyForUpdateDto newCompanys)
+                  {
+                      if (newCompanys == null)
 
-                    var CompanyFromStore = CompanyDataStore.Current.Companies.FirstOrDefault(p =>p.Id==id);
+                      {
+                          return BadRequest();
+                      }
 
-                    if (CompanyFromStore == null)
-                    {
-                        return NotFound();
-                    }
-                    CompanyFromStore.Name = newCompanys.Name;
-                    CompanyFromStore.Description =newCompanys.Description;
-                    CompanyFromStore.City = newCompanys.City;
-                    CompanyFromStore.Country = newCompanys.Country;
-                    CompanyFromStore.Phone = newCompanys.Phone;
-                    CompanyFromStore.EmailAdress = newCompanys.EmailAdress;
-                    CompanyFromStore.WebSite = newCompanys.WebSite;
+                      var CompanyFromStore = CompanyDataStore.Current.Companies.FirstOrDefault(p =>p.Id==id);
+
+                      if (CompanyFromStore == null)
+                      {
+                          return NotFound();
+                      }
+                      CompanyFromStore.Name = newCompanys.Name;
+                      CompanyFromStore.Description =newCompanys.Description;
+                      CompanyFromStore.City = newCompanys.City;
+                      CompanyFromStore.Country = newCompanys.Country;
+                      CompanyFromStore.Phone = newCompanys.Phone;
+                      CompanyFromStore.EmailAdress = newCompanys.EmailAdress;
+                      CompanyFromStore.WebSite = newCompanys.WebSite;
 
 
 
-            return NoContent();
+              return NoContent();
 
-                }
+                  }*/
 
         [HttpPatch("{name}")]
 
@@ -244,57 +244,82 @@ namespace HRResorcesVlada.Controllers
             return NoContent();
         }
 
-       /*     var CompanyFromStore = CompanyDataStore.Current.Companies.FirstOrDefault(p => p.Name == name);
+        /*     var CompanyFromStore = CompanyDataStore.Current.Companies.FirstOrDefault(p => p.Name == name);
 
-             if (CompanyFromStore == null)
-              {
-                  return NotFound();
-              }
+              if (CompanyFromStore == null)
+               {
+                   return NotFound();
+               }
 
 
-            var companyToPatch = new CompanyForUpdateDto()
-            {
-                Name = CompanyFromStore.Name,
-                Description = CompanyFromStore.Description,
-                City = CompanyFromStore.City,
-                Country = CompanyFromStore.Country,
-                Phone = CompanyFromStore.Phone,
-                EmailAdress = CompanyFromStore.EmailAdress,
-                WebSite = CompanyFromStore. WebSite
+             var companyToPatch = new CompanyForUpdateDto()
+             {
+                 Name = CompanyFromStore.Name,
+                 Description = CompanyFromStore.Description,
+                 City = CompanyFromStore.City,
+                 Country = CompanyFromStore.Country,
+                 Phone = CompanyFromStore.Phone,
+                 EmailAdress = CompanyFromStore.EmailAdress,
+                 WebSite = CompanyFromStore. WebSite
 
-            };
+             };
 
-            patchDoc.ApplyTo(companyToPatch);
+             patchDoc.ApplyTo(companyToPatch);
 
-            CompanyFromStore.Name = companyToPatch.Name;
-            CompanyFromStore.Description = companyToPatch.Description;
-            CompanyFromStore.City = companyToPatch.City;
-            CompanyFromStore.Country= companyToPatch.Country;
-            CompanyFromStore.Phone= companyToPatch.Phone;
-            CompanyFromStore.EmailAdress = companyToPatch.EmailAdress;
-            CompanyFromStore.WebSite = companyToPatch.WebSite;
-            
+             CompanyFromStore.Name = companyToPatch.Name;
+             CompanyFromStore.Description = companyToPatch.Description;
+             CompanyFromStore.City = companyToPatch.City;
+             CompanyFromStore.Country= companyToPatch.Country;
+             CompanyFromStore.Phone= companyToPatch.Phone;
+             CompanyFromStore.EmailAdress = companyToPatch.EmailAdress;
+             CompanyFromStore.WebSite = companyToPatch.WebSite;
 
-            return NoContent();
-        }*/
-          [HttpDelete("{Id}")]
 
-        public IActionResult deliteCompany(int id)
-           
-       
+             return NoContent();
+         }*/
+        [HttpDelete("{name}")]
+
+        public IActionResult deliteCompany(string name)
+
         {
-            var CompanyDelite = CompanyDataStore.Current.Companies.FirstOrDefault(c =>c.Id == id);
 
-            if (CompanyDelite == null)
+            if (!_hrResorcesInterface.CompanyExists(name))
             {
+                return NotFound("Ne postoji Kompanija  pod tim imenom");
+
+            }
+
+            var companyDelite = _hrResorcesInterface.GetCompany(name);
+
+            if (companyDelite == null)
+            {
+
                 return NotFound();
             }
 
-            CompanyDataStore.Current.Companies.Remove(CompanyDelite );
+           _hrResorcesInterface.DeliteCompany(companyDelite);
+
+            if (!_hrResorcesInterface.Save())
+            {
+
+                return StatusCode(500, "nije sačuvano");
+            }
 
             return NoContent();
+         
+            /*  {
+                var CompanyDelite = CompanyDataStore.Current.Companies.FirstOrDefault(c => c.Id == id);
+
+                if (CompanyDelite == null)
+                {
+                    return NotFound();
+                }
+
+                CompanyDataStore.Current.Companies.Remove(CompanyDelite);
+
+                return NoContent();
+            }*/
+
         }
-
-
     }
 }

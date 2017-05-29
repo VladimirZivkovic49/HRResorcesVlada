@@ -13,6 +13,8 @@ namespace HRResorcesVlada.Services
         IEnumerable<JobPosition> GetJobPositions();
         JobPosition GetJobPositio(int Id);
         void AddNewCompany(Company newCompanys);
+        void DeliteCompany(Company newCompanys);
+
         bool Save();
         bool CompanyExists(string name);
     }

@@ -28,6 +28,11 @@ namespace HRResorcesVlada.Services
             return _context.Companies.Any(c => c.Name == name);
         }
 
+        public void DeliteCompany(Company newCompanys)
+        {
+            _context.Companies.Remove(newCompanys);
+        }
+
         public IEnumerable<Company> GetCompanies()
         {
             return _context.Companies.OrderBy(c => c.Name).ToList();

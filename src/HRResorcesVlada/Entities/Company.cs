@@ -19,10 +19,10 @@ namespace HRResorcesVlada.Entities
         public string Description { get; set; }
         public string City { get; set; }
 
-        internal void Add()
+      /*  internal void Add()
         {
             throw new NotImplementedException();
-        }
+        }*/
 
         public string Country { get; set; }
         public string Phone { get; set; }

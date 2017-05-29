@@ -54,6 +54,8 @@ namespace HRResorcesVlada
 
                 cfg.CreateMap<Entities.Company, Models.CompaniesWithoutJobPositionDto>().ReverseMap();
 
+                cfg.CreateMap<Entities.Company, Models.CompanyForUpdateDto>().ReverseMap();
+
             });
             
 

@@ -189,9 +189,9 @@ namespace HRResorcesVlada.Controllers
 
                 }
 
-        [HttpPatch("{Id}")]
-       
-        public IActionResult UpdateCompany(int id,
+        [HttpPatch("{name}")]
+
+        public IActionResult UpdateCompany(string name,
           [FromBody]JsonPatchDocument<CompanyForUpdateDto> patchDoc)
         {
             if (patchDoc == null)
@@ -199,12 +199,59 @@ namespace HRResorcesVlada.Controllers
 
                 BadRequest();
             }
-            var CompanyFromStore = CompanyDataStore.Current.Companies.FirstOrDefault(p => p.Id == id);
 
-            if (CompanyFromStore == null)
+            if (!_hrResorcesInterface.CompanyExists(name))
+            {
+                return NotFound("Ne postoji Kompanija  pod tim imenom");
+
+            }
+
+            var companyEntity = _hrResorcesInterface.GetCompany(name);
+
+            if (companyEntity == null)
             {
                 return NotFound();
+
             }
+
+            var companyToPatch = Mapper.Map<CompanyForUpdateDto>(companyEntity);
+
+            patchDoc.ApplyTo(companyToPatch, ModelState);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+
+            TryValidateModel(companyToPatch);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Mapper.Map(companyToPatch, companyEntity);
+
+
+
+            if (!_hrResorcesInterface.Save())
+            {
+
+                return StatusCode(500, "nije sačuvano");
+            }
+
+            return NoContent();
+        }
+
+       /*     var CompanyFromStore = CompanyDataStore.Current.Companies.FirstOrDefault(p => p.Name == name);
+
+             if (CompanyFromStore == null)
+              {
+                  return NotFound();
+              }
+
+
             var companyToPatch = new CompanyForUpdateDto()
             {
                 Name = CompanyFromStore.Name,
@@ -229,7 +276,7 @@ namespace HRResorcesVlada.Controllers
             
 
             return NoContent();
-        }
+        }*/
           [HttpDelete("{Id}")]
 
         public IActionResult deliteCompany(int id)

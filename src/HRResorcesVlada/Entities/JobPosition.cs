@@ -23,7 +23,7 @@ namespace HRResorcesVlada.Entities
         
       //  public JobPosition Company { get; set; }
 
-        public string CompanyName { get; set; }
+     //   public string CompanyName { get; set; }
 
     }
 }

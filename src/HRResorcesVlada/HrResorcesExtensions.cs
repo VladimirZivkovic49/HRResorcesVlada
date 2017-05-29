@@ -9,14 +9,14 @@ namespace HRResorcesVlada
     public static class HrResorcesExtensions
     {
 
-        public static void EnsureSeedDataForContext(this HrResorcesContext context)
+     public static void EnsureSeedDataForContext(this HrResorcesContext context)
         {
             if (context.Companies.Any())
             {
                 return;
             }
 
-           var companies= new List<Company>
+            var companies = new List<Company>
             {
 
            new Company()
@@ -28,54 +28,66 @@ namespace HRResorcesVlada
             Country="Serbia",
             Phone="1111111",
             EmailAdress=" ABC@co",
-            WebSite="www.ABC",
-            JobsPosition= new List<JobPosition>()
+            WebSite="www.ABC" }
+
+           };
+
+
             {
 
-            new JobPosition()
-            {
-           
-            Name="Front end",
-            Description ="Java",
-            City="Novi Sad",
-            Country="Serbia",
-            PartTime="Da",
-            KeyWords=" Iskustvo 5 god", }
-            }
-         },
 
-               new Company()
+
+                new Company()
+
+                {
+                    Name = "DEG",
+                    Description = "Software",
+                    City = "Atina",
+                    Country = "Greace",
+                    Phone = "1111111",
+                    EmailAdress = " DEG@co",
+                    WebSite = "www.DEG"
+
+
+
+
+
+                };
+
+                if (context.Jobpositions.Any())
+                {
+                    return;
+                }
+
+                var jobPositions = new List<JobPosition>()
 
            {
-            Name="DEG",
-            Description ="Software",
-            City="Atina",
-            Country="Greace",
-            Phone="1111111",
-            EmailAdress=" DEG@co",
-            WebSite="www.DEG",
-            JobsPosition= new List<JobPosition>()
-            {
 
-            new JobPosition()
-            {
+                 new JobPosition()
 
-            Name="Back end",
-            Description ="C sharp",
-            City="Atina",
-            Country="Greace",
-            PartTime="Da",
-            KeyWords=" Iskustvo 3 god", }
-            }
-         },
-       };
+                 {
+                Name = "Front end",
+                Description = "Java",
+                City = "Novi Sad",
+                Country = "Serbia",
+                PartTime = "Da",
+                KeyWords = " Iskustvo 5 god",
 
-          if (context.RegularUsers.Any())
-            {
-                return;
-            }
 
-            var regularUsers = new List<RegularUser>()
+                 },
+
+};
+
+
+
+
+
+                if (context.RegularUsers.Any())
+                {
+                    return;
+                }
+
+                var regularUsers = new List<RegularUser>()
             {
 
            new RegularUser()
@@ -90,9 +102,7 @@ namespace HRResorcesVlada
             KeyWords="Hemičar"
            },
 
-           
-            
-            
+
             };
 
 
@@ -100,12 +110,14 @@ namespace HRResorcesVlada
 
 
 
-            context.Companies.AddRange(companies);
-            context.RegularUsers.AddRange(regularUsers);
+                context.Companies.AddRange(companies);
 
-            context.SaveChanges();
+                context.Jobpositions.AddRange(jobPositions);
+                context.RegularUsers.AddRange(regularUsers);
 
+                context.SaveChanges();
+
+            }
         }
-
     }
 }

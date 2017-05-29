@@ -18,7 +18,7 @@ namespace HRResorcesVlada.Migrations
 
             modelBuilder.Entity("HRResorcesVlada.Entities.Company", b =>
                 {
-                    b.Property<string>("Name")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("City");
@@ -29,11 +29,13 @@ namespace HRResorcesVlada.Migrations
 
                     b.Property<string>("EmailAdress");
 
+                    b.Property<string>("Name");
+
                     b.Property<string>("Phone");
 
                     b.Property<string>("WebSite");
 
-                    b.HasKey("Name");
+                    b.HasKey("Id");
 
                     b.ToTable("Companies");
                 });
@@ -44,8 +46,6 @@ namespace HRResorcesVlada.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("City");
-
-                    b.Property<string>("CompanyName");
 
                     b.Property<string>("Country");
 
@@ -58,8 +58,6 @@ namespace HRResorcesVlada.Migrations
                     b.Property<string>("PartTime");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CompanyName");
 
                     b.ToTable("Jobpositions");
                 });
@@ -86,13 +84,6 @@ namespace HRResorcesVlada.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("RegularUsers");
-                });
-
-            modelBuilder.Entity("HRResorcesVlada.Entities.JobPosition", b =>
-                {
-                    b.HasOne("HRResorcesVlada.Entities.Company")
-                        .WithMany("JobsPosition")
-                        .HasForeignKey("CompanyName");
                 });
         }
     }

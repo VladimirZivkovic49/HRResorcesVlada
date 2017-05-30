@@ -53,6 +53,11 @@ namespace HRResorcesVlada.Services
             return _context.Jobpositions.ToList();
         }
 
+        public IEnumerable<RegularUser> GetRegularUsers()
+        {
+             return _context.RegularUsers.OrderBy(c => c.UserName).ToList();
+        }
+
         public bool Save()
         {
             return (_context.SaveChanges() >= 0); 

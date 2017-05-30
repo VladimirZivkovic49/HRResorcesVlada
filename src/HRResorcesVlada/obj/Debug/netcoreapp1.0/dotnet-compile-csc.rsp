@@ -192,10 +192,10 @@
 -r:"C:\Users\Zivkovic Vladimir\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll"
 -resource:"F:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\obj\Debug\netcoreapp1.0\HRResorcesVladadotnet-compile.deps.json",HRResorcesVlada.deps.json
 "F:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Program.cs"
-"F:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Startup.cs"
 "F:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\HrResorcesExtensions.cs"
-"F:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Migrations\20170529113001_InitialHrresorcesMigration.cs"
-"F:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Migrations\20170529113001_InitialHrresorcesMigration.Designer.cs"
+"F:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Startup.cs"
+"F:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Migrations\20170530140618_HrResorcesInitialMigration.cs"
+"F:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Migrations\20170530140618_HrResorcesInitialMigration.Designer.cs"
 "F:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Migrations\HrResorcesContextModelSnapshot.cs"
 "F:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Services\HrResorcesRepository.cs"
 "F:\Programiranje\Odbir\6 projekat\HRResorcesVlada\src\HRResorcesVlada\Services\HrResorcesInterface.cs"

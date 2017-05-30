@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace HRResorcesVlada.Migrations
 {
-    public partial class InitialHrresorcesMigration : Migration
+    public partial class HrResorcesInitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,37 +32,37 @@ namespace HRResorcesVlada.Migrations
                 name: "Jobpositions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    JobId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    City = table.Column<string>(nullable: true),
-                    Country = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    KeyWords = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true),
-                    PartTime = table.Column<string>(nullable: true)
+                    JobCity = table.Column<string>(nullable: true),
+                    JobCountry = table.Column<string>(nullable: true),
+                    JobDescription = table.Column<string>(nullable: true),
+                    JobKeyWords = table.Column<string>(nullable: true),
+                    JobName = table.Column<string>(nullable: true),
+                    JobPartTime = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Jobpositions", x => x.Id);
+                    table.PrimaryKey("PK_Jobpositions", x => x.JobId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "RegularUsers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    UserId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    City = table.Column<string>(nullable: true),
-                    FullTimeJob = table.Column<string>(nullable: true),
-                    KeyWords = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true),
-                    Surname = table.Column<string>(nullable: true),
-                    VilingToChangeLocation = table.Column<string>(nullable: true),
-                    WorkExperience = table.Column<string>(nullable: true)
+                    UserCity = table.Column<string>(nullable: true),
+                    UserFullTimeJob = table.Column<string>(nullable: true),
+                    UserKeyWords = table.Column<string>(nullable: true),
+                    UserName = table.Column<string>(nullable: true),
+                    UserSurname = table.Column<string>(nullable: true),
+                    UserVilingToChangeLocation = table.Column<string>(nullable: true),
+                    UserWorkExperience = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RegularUsers", x => x.Id);
+                    table.PrimaryKey("PK_RegularUsers", x => x.UserId);
                 });
         }
 

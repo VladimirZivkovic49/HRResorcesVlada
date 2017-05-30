@@ -1,4 +1,6 @@
-﻿using HRResorcesVlada.Models;
+﻿using AutoMapper;
+using HRResorcesVlada.Models;
+using HRResorcesVlada.Services;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,14 +14,22 @@ namespace HRResorcesVlada.Controllers
 
     public class RegularUserController : Controller
     {
+        private HrResorcesInterface _hrResorcesInterface;
 
+        public RegularUserController(HrResorcesInterface hrResorcesInterface)
+        {
+            _hrResorcesInterface = hrResorcesInterface;
+        }
 
         [HttpGet()]
         public IActionResult GetRegularUsers()
+        { 
+         var regularuserEntities = _hrResorcesInterface.GetRegularUsers();
+         var results = Mapper.Map<IEnumerable<RegularUserForList>>(regularuserEntities);
 
-        {
+       
 
-            return Ok(RegularUserDataStore.Current.RegularUsers);
+            return Ok(results);
 
         }
 

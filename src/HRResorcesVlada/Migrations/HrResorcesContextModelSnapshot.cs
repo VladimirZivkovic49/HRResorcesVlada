@@ -42,46 +42,46 @@ namespace HRResorcesVlada.Migrations
 
             modelBuilder.Entity("HRResorcesVlada.Entities.JobPosition", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("JobId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("City");
+                    b.Property<string>("JobCity");
 
-                    b.Property<string>("Country");
+                    b.Property<string>("JobCountry");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("JobDescription");
 
-                    b.Property<string>("KeyWords");
+                    b.Property<string>("JobKeyWords");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("JobName");
 
-                    b.Property<string>("PartTime");
+                    b.Property<string>("JobPartTime");
 
-                    b.HasKey("Id");
+                    b.HasKey("JobId");
 
                     b.ToTable("Jobpositions");
                 });
 
             modelBuilder.Entity("HRResorcesVlada.Entities.RegularUser", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("City");
+                    b.Property<string>("UserCity");
 
-                    b.Property<string>("FullTimeJob");
+                    b.Property<string>("UserFullTimeJob");
 
-                    b.Property<string>("KeyWords");
+                    b.Property<string>("UserKeyWords");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("UserName");
 
-                    b.Property<string>("Surname");
+                    b.Property<string>("UserSurname");
 
-                    b.Property<string>("VilingToChangeLocation");
+                    b.Property<string>("UserVilingToChangeLocation");
 
-                    b.Property<string>("WorkExperience");
+                    b.Property<string>("UserWorkExperience");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.ToTable("RegularUsers");
                 });

@@ -44,7 +44,7 @@ namespace HRResorcesVlada
             {
                 app.UseExceptionHandler();
             }
-            HrResorcesContext.EnsureSeedDataForContext();
+           HrResorcesContext.EnsureSeedDataForContext();
             app.UseStatusCodePages();
 
 
@@ -55,7 +55,7 @@ namespace HRResorcesVlada
                 cfg.CreateMap<Entities.Company, Models.CompaniesWithoutJobPositionDto>().ReverseMap();
 
                 cfg.CreateMap<Entities.Company, Models.CompanyForUpdateDto>().ReverseMap();
-
+                cfg.CreateMap<Entities.RegularUser, Models.RegularUserForList>().ReverseMap();
             });
             
 

@@ -17,5 +17,8 @@ namespace HRResorcesVlada.Services
 
         bool Save();
         bool CompanyExists(string name);
+
+        IEnumerable<RegularUser> GetRegularUsers();
+
     }
 }

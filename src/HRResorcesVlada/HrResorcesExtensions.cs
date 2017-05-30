@@ -66,12 +66,12 @@ namespace HRResorcesVlada
                  new JobPosition()
 
                  {
-                Name = "Front end",
-                Description = "Java",
-                City = "Novi Sad",
-                Country = "Serbia",
-                PartTime = "Da",
-                KeyWords = " Iskustvo 5 god",
+                JobName = "Front end",
+                JobDescription = "Java",
+                JobCity = "Novi Sad",
+                JobCountry = "Serbia",
+               JobPartTime = "Da",
+               JobKeyWords = " Iskustvo 5 god",
 
 
                  },
@@ -93,13 +93,13 @@ namespace HRResorcesVlada
            new RegularUser()
 
            {
-            Name="Vlada",
-            Surname="Zivkovic",
-            City="Novi Sad",
-            VilingToChangeLocation="Da",
-            FullTimeJob="Da",
-            WorkExperience=" Da",
-            KeyWords="Hemičar"
+            UserName="Vlada",
+            UserSurname="Zivkovic",
+           UserCity="Novi Sad",
+            UserVilingToChangeLocation="Da",
+            UserFullTimeJob="Da",
+            UserWorkExperience=" Da",
+            UserKeyWords="Hemičar"
            },
 
 

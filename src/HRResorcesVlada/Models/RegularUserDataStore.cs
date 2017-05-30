@@ -19,28 +19,28 @@ namespace HRResorcesVlada.Models
 
                 new RegularUserDto()
                 {
-            Id=1,
-            Name="Vlada",
-            Surname="Zivkovic",
-            City="Novi Sad",
-            VilingToChangeLocation="Da",
-            FullTimeJob="Da",
-            WorkExperience=" Da",
-            KeyWords="Hemičar"
+            UserId=1,
+           UserName="Vlada",
+            UserSurname="Zivkovic",
+            UserCity="Novi Sad",
+            UserVilingToChangeLocation="Da",
+            UserFullTimeJob="Da",
+            UserWorkExperience=" Da",
+            UserKeyWords="Hemičar"
 
             },
 
                  new RegularUserDto()
                 {
 
-            Id =2,
-            Name="Pera",
-            Surname="Petrović",
-            City="Beograd",
-            VilingToChangeLocation="Ne",
-            FullTimeJob="Da",
-            WorkExperience=" Da",
-            KeyWords="Električar"
+            UserId =2,
+            UserName="Pera",
+            UserSurname="Petrović",
+            UserCity="Beograd",
+            UserVilingToChangeLocation="Ne",
+            UserFullTimeJob="Da",
+            UserWorkExperience=" Da",
+            UserKeyWords="Električar"
                  }
              };
         }

@@ -7,13 +7,13 @@ namespace HRResorcesVlada.Models
 {
     public class JobPositionDto
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string City { get; set; }
-        public string Country { get; set; }
-        public string PartTime { get; set; }
-        public string KeyWords { get; set; }
+        public int JobId { get; set; }
+        public string JobName { get; set; }
+        public string JobDescription { get; set; }
+        public string JobCity { get; set; }
+        public string JobCountry { get; set; }
+        public string JobPartTime { get; set; }
+        public string JobKeyWords { get; set; }
         
 
 

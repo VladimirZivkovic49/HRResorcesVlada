@@ -38,25 +38,25 @@ namespace HRResorcesVlada.Controllers
        [HttpGet("{city}")]
         public IActionResult GetJobPositionscity(string city)
         {
-            var jobPositionToReturn = JobPositionDataStore.Current.JobPositions.FindAll(c=>c.City==city);
+            var jobPositionToReturn = JobPositionDataStore.Current.JobPositions.FindAll(c=>c.JobCity==city);
 
             if (jobPositionToReturn.Count == 0)
 
             {
 
-             var jobPositionToReturnKeyWords = JobPositionDataStore.Current.JobPositions.FindAll(c => c.Country == city);
+             var jobPositionToReturnKeyWords = JobPositionDataStore.Current.JobPositions.FindAll(c => c.JobCountry == city);
 
              if (jobPositionToReturnKeyWords.Count == 0)
 
                 {
 
-               var jobPositionToReturnKeyWord = JobPositionDataStore.Current.JobPositions.FindAll(c => c.KeyWords == city);
+               var jobPositionToReturnKeyWord = JobPositionDataStore.Current.JobPositions.FindAll(c => c.JobKeyWords == city);
 
                if (jobPositionToReturnKeyWord.Count == 0)
 
                     {
 
-                   var jobPositionToReturnFullTime = JobPositionDataStore.Current.JobPositions.FindAll(c => c.PartTime == city);
+                   var jobPositionToReturnFullTime = JobPositionDataStore.Current.JobPositions.FindAll(c => c.JobPartTime == city);
 
                    if (jobPositionToReturnFullTime.Count == 0)
 
@@ -101,17 +101,17 @@ namespace HRResorcesVlada.Controllers
                         return NotFound();
                     }
 
-                    var maxJobPositionsId = JobPositionDataStore.Current.JobPositions.Max(c => c.Id);
+                    var maxJobPositionsId = JobPositionDataStore.Current.JobPositions.Max(c => c.JobId);
 
                     var finalJobPosition = new JobPositionDto()
                     {
-                        Id = ++ maxJobPositionsId,
-                        Name = newJobPositionss.Name,
-                       Description = newJobPositionss.Description,
-                        City = newJobPositionss.City,
-                       Country = newJobPositionss.Country,
-                        PartTime = newJobPositionss.PartTime,
-                       KeyWords = newJobPositionss.KeyWords,
+                        JobId = ++ maxJobPositionsId,
+                        JobName = newJobPositionss.JobName,
+                       JobDescription = newJobPositionss.JobDescription,
+                        JobCity = newJobPositionss.JobCity,
+                       JobCountry = newJobPositionss.JobCountry,
+                        JobPartTime = newJobPositionss.JobPartTime,
+                       JobKeyWords = newJobPositionss.JobKeyWords,
                        
 
                     };
@@ -132,18 +132,18 @@ namespace HRResorcesVlada.Controllers
                 return BadRequest();
             }
 
-            var JobPositionsFromStore = JobPositionDataStore.Current.JobPositions.FirstOrDefault(p =>p.Id==id);
+            var JobPositionsFromStore = JobPositionDataStore.Current.JobPositions.FirstOrDefault(p =>p.JobId==id);
 
             if (JobPositionsFromStore  == null)
             {
                 return NotFound();
             }
-            JobPositionsFromStore.Name = newJobPositionss.Name;
-            JobPositionsFromStore.Description = newJobPositionss.Description;
-            JobPositionsFromStore.City = newJobPositionss.City;
-            JobPositionsFromStore.Country = newJobPositionss.Country;
-            JobPositionsFromStore.PartTime = newJobPositionss.PartTime;
-            JobPositionsFromStore.KeyWords = newJobPositionss.KeyWords;
+            JobPositionsFromStore.JobName = newJobPositionss.JobName;
+            JobPositionsFromStore.JobDescription = newJobPositionss.JobDescription;
+            JobPositionsFromStore.JobCity = newJobPositionss.JobCity;
+            JobPositionsFromStore.JobCountry = newJobPositionss.JobCountry;
+            JobPositionsFromStore.JobPartTime = newJobPositionss.JobPartTime;
+            JobPositionsFromStore.JobKeyWords = newJobPositionss.JobKeyWords;
 
 
 
@@ -159,7 +159,7 @@ namespace HRResorcesVlada.Controllers
 
                         BadRequest();
                     }
-                    var JobPositionFromStore = JobPositionDataStore.Current.JobPositions.FirstOrDefault(p => p.Id == id);
+                    var JobPositionFromStore = JobPositionDataStore.Current.JobPositions.FirstOrDefault(p => p.JobId == id);
 
                     if (JobPositionFromStore == null)
                     {
@@ -167,23 +167,23 @@ namespace HRResorcesVlada.Controllers
                     }
                     var jobPositionToPatch = new JobPositionForUpdateDto()
                     {
-                        Name = JobPositionFromStore.Name,
-                        Description = JobPositionFromStore.Description,
-                        City = JobPositionFromStore.City,
-                        Country = JobPositionFromStore.Country,
-                        PartTime = JobPositionFromStore.PartTime,
-                        KeyWords = JobPositionFromStore.KeyWords
+                        JobName = JobPositionFromStore.JobName,
+                        JobDescription = JobPositionFromStore.JobDescription,
+                        JobCity = JobPositionFromStore.JobCity,
+                        JobCountry = JobPositionFromStore.JobCountry,
+                        JobPartTime = JobPositionFromStore.JobPartTime,
+                        JobKeyWords = JobPositionFromStore.JobKeyWords
 
                     };
 
                     patchDoc.ApplyTo(jobPositionToPatch);
 
-            JobPositionFromStore.Name =jobPositionToPatch.Name;
-            JobPositionFromStore.Description = jobPositionToPatch.Description;
-            JobPositionFromStore.City = jobPositionToPatch.City;
-            JobPositionFromStore.PartTime = jobPositionToPatch.PartTime;
-            JobPositionFromStore.KeyWords = jobPositionToPatch.KeyWords;
-            JobPositionFromStore.Country = jobPositionToPatch.Country;
+            JobPositionFromStore.JobName =jobPositionToPatch.JobName;
+            JobPositionFromStore.JobDescription = jobPositionToPatch.JobDescription;
+            JobPositionFromStore.JobCity = jobPositionToPatch.JobCity;
+            JobPositionFromStore.JobPartTime = jobPositionToPatch.JobPartTime;
+            JobPositionFromStore.JobKeyWords = jobPositionToPatch.JobKeyWords;
+            JobPositionFromStore.JobCountry = jobPositionToPatch.JobCountry;
                   
                     return NoContent();
                 }
@@ -194,7 +194,7 @@ namespace HRResorcesVlada.Controllers
            
        
         {
-            var JobPositionDelite = JobPositionDataStore.Current.JobPositions.FirstOrDefault(c =>c.Id == id);
+            var JobPositionDelite = JobPositionDataStore.Current.JobPositions.FirstOrDefault(c =>c.JobId == id);
 
             if (JobPositionDelite == null)
             {

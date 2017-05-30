@@ -26,7 +26,7 @@ namespace HRResorcesVlada.Controllers
         [HttpGet("{id}")]
         public IActionResult GetRegularUser(int id)
         {
-            var regularUserToReturn = RegularUserDataStore.Current.RegularUsers.FirstOrDefault(c => c.Id == id);
+            var regularUserToReturn = RegularUserDataStore.Current.RegularUsers.FirstOrDefault(c => c.UserId == id);
 
             if (regularUserToReturn == null)
             {
@@ -55,18 +55,18 @@ namespace HRResorcesVlada.Controllers
                 return NotFound();
             }
 
-            var maxRegularUsersId = RegularUserDataStore.Current.RegularUsers.Max(c => c.Id);
+            var maxRegularUsersId = RegularUserDataStore.Current.RegularUsers.Max(c => c.UserId);
 
             var finalRegularuser = new RegularUserDto()
             {
-                Id = ++maxRegularUsersId,
-                Name = newRegularUserss.Name,
-                Surname = newRegularUserss.Surname,
-                City = newRegularUserss.City,
-                VilingToChangeLocation = newRegularUserss.VilingToChangeLocation,
-                FullTimeJob = newRegularUserss.FullTimeJob,
-                WorkExperience = newRegularUserss.WorkExperience,
-                KeyWords = newRegularUserss.KeyWords
+                UserId = ++maxRegularUsersId,
+                UserName = newRegularUserss.UserName,
+                UserSurname = newRegularUserss.UserSurname,
+                UserCity = newRegularUserss.UserCity,
+                UserVilingToChangeLocation = newRegularUserss.UserVilingToChangeLocation,
+                UserFullTimeJob = newRegularUserss.UserFullTimeJob,
+                UserWorkExperience = newRegularUserss.UserWorkExperience,
+                UserKeyWords = newRegularUserss.UserKeyWords
 
             };
             RegularUserss.Add(finalRegularuser);
@@ -86,19 +86,19 @@ namespace HRResorcesVlada.Controllers
                 return BadRequest();
             }
 
-            var RegularUsersFromStore = RegularUserDataStore.Current.RegularUsers.FirstOrDefault(p =>p.Id==id);
+            var RegularUsersFromStore = RegularUserDataStore.Current.RegularUsers.FirstOrDefault(p =>p.UserId==id);
 
             if (RegularUsersFromStore == null)
             {
                 return NotFound();
             }
-            RegularUsersFromStore.Name = newRegularUserss.Name;
-            RegularUsersFromStore.Surname = newRegularUserss.Surname;
-            RegularUsersFromStore.City = newRegularUserss.City;
-            RegularUsersFromStore.VilingToChangeLocation = newRegularUserss.VilingToChangeLocation;
-            RegularUsersFromStore.FullTimeJob = newRegularUserss.FullTimeJob;
-            RegularUsersFromStore.WorkExperience = newRegularUserss.WorkExperience;
-            RegularUsersFromStore.KeyWords = newRegularUserss.KeyWords;
+            RegularUsersFromStore.UserName = newRegularUserss.UserName;
+            RegularUsersFromStore.UserSurname = newRegularUserss.UserSurname;
+            RegularUsersFromStore.UserCity = newRegularUserss.UserCity;
+            RegularUsersFromStore.UserVilingToChangeLocation = newRegularUserss.UserVilingToChangeLocation;
+            RegularUsersFromStore.UserFullTimeJob = newRegularUserss.UserFullTimeJob;
+            RegularUsersFromStore.UserWorkExperience = newRegularUserss.UserWorkExperience;
+            RegularUsersFromStore.UserKeyWords = newRegularUserss.UserKeyWords;
 
 
 
@@ -115,7 +115,7 @@ namespace HRResorcesVlada.Controllers
 
                 BadRequest();
             }
-            var RegularUsersFromStore = RegularUserDataStore.Current.RegularUsers.FirstOrDefault(p => p.Id == id);
+            var RegularUsersFromStore = RegularUserDataStore.Current.RegularUsers.FirstOrDefault(p => p.UserId == id);
 
             if (RegularUsersFromStore == null)
             {
@@ -123,25 +123,25 @@ namespace HRResorcesVlada.Controllers
             }
             var regularUserToPatch = new RegularUserForUpdateDto()
             {
-                Name = RegularUsersFromStore.Name,
-                Surname = RegularUsersFromStore.Surname,
-                City = RegularUsersFromStore.City,
-                VilingToChangeLocation = RegularUsersFromStore.VilingToChangeLocation,
-                FullTimeJob = RegularUsersFromStore.FullTimeJob,
-                WorkExperience = RegularUsersFromStore.WorkExperience,
-                KeyWords = RegularUsersFromStore.KeyWords
+                UserName = RegularUsersFromStore.UserName,
+                UserSurname = RegularUsersFromStore.UserSurname,
+                UserCity = RegularUsersFromStore.UserCity,
+                UserVilingToChangeLocation = RegularUsersFromStore.UserVilingToChangeLocation,
+                UserFullTimeJob = RegularUsersFromStore.UserFullTimeJob,
+                UserWorkExperience = RegularUsersFromStore.UserWorkExperience,
+                UserKeyWords = RegularUsersFromStore.UserKeyWords
 
             };
 
             patchDoc.ApplyTo(regularUserToPatch);
 
-            RegularUsersFromStore.Name = regularUserToPatch.Name;
-            RegularUsersFromStore.Surname = regularUserToPatch.Surname;
-            RegularUsersFromStore.City = regularUserToPatch.City;
-            RegularUsersFromStore.VilingToChangeLocation = regularUserToPatch.VilingToChangeLocation;
-            RegularUsersFromStore.FullTimeJob = regularUserToPatch.FullTimeJob;
-            RegularUsersFromStore.WorkExperience = regularUserToPatch.WorkExperience;
-            RegularUsersFromStore.KeyWords = regularUserToPatch.KeyWords;
+            RegularUsersFromStore.UserName = regularUserToPatch.UserName;
+            RegularUsersFromStore.UserSurname = regularUserToPatch.UserSurname;
+            RegularUsersFromStore.UserCity = regularUserToPatch.UserCity;
+            RegularUsersFromStore.UserVilingToChangeLocation = regularUserToPatch.UserVilingToChangeLocation;
+            RegularUsersFromStore.UserFullTimeJob = regularUserToPatch.UserFullTimeJob;
+            RegularUsersFromStore.UserWorkExperience = regularUserToPatch.UserWorkExperience;
+            RegularUsersFromStore.UserKeyWords = regularUserToPatch.UserKeyWords;
 
             return NoContent();
         }
@@ -152,7 +152,7 @@ namespace HRResorcesVlada.Controllers
            
        
         {
-            var RegularUserDelite = RegularUserDataStore.Current.RegularUsers.FirstOrDefault(c =>c.Id == id);
+            var RegularUserDelite = RegularUserDataStore.Current.RegularUsers.FirstOrDefault(c =>c.UserId == id);
 
             if (RegularUserDelite == null)
             {

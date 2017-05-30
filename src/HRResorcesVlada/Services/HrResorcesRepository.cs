@@ -45,7 +45,7 @@ namespace HRResorcesVlada.Services
 
         public JobPosition GetJobPositio(int Id)
         {
-            return _context.Jobpositions.Where(p => p.Id == Id).FirstOrDefault();
+            return _context.Jobpositions.Where(p => p.JobId == Id).FirstOrDefault();
         }
 
         public IEnumerable<JobPosition> GetJobPositions()

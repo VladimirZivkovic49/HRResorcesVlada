@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace HRResorcesVlada.Models
 {
-    public class RegularUserForUpdateDto
+    public class RegularUserForList
     {
+        public int UserId { get; set; }
         public string UserName { get; set; }
         public string UserSurname { get; set; }
         public string UserCity { get; set; }
@@ -14,7 +15,6 @@ namespace HRResorcesVlada.Models
         public string UserFullTimeJob { get; set; }
         public string UserWorkExperience { get; set; }
         public string UserKeyWords { get; set; }
-
 
 
     }

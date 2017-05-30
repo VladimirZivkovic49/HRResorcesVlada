@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace HRResorcesVlada.Models
 {
-    public class RegularUserForCreationDto
+    public class RegularUserCreationDto
     {
 
         

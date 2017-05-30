@@ -50,7 +50,7 @@ namespace HRResorcesVlada.Controllers
 
 
         [HttpPost()]
-        public IActionResult CreateNewRegularUser(int Id, [FromBody] RegularUserForCreationDto newRegularUserss)
+        public IActionResult CreateNewRegularUser([FromBody] RegularUserCreationDto newRegularUserss)
 
         {
             if (newRegularUserss == null)
@@ -58,35 +58,63 @@ namespace HRResorcesVlada.Controllers
             {
                 return BadRequest();
             }
-            var RegularUserss = RegularUserDataStore.Current.RegularUsers;
+            string regularUserName = newRegularUserss.UserName;
+            string regularUserSurname = newRegularUserss.UserSurname;
 
-            if (RegularUserss == null)
-            {
-                return NotFound();
-            }
+             if (_hrResorcesInterface.RegularUserExists(regularUserName) && _hrResorcesInterface.RegularUserExistss(regularUserSurname) )
+                       {
+                           return BadRequest("Postoji Korisnik  pod tim imenom");
 
-            var maxRegularUsersId = RegularUserDataStore.Current.RegularUsers.Max(c => c.UserId);
+                       }
 
-            var finalRegularuser = new RegularUserDto()
-            {
-                UserId = ++maxRegularUsersId,
-                UserName = newRegularUserss.UserName,
-                UserSurname = newRegularUserss.UserSurname,
-                UserCity = newRegularUserss.UserCity,
-                UserVilingToChangeLocation = newRegularUserss.UserVilingToChangeLocation,
-                UserFullTimeJob = newRegularUserss.UserFullTimeJob,
-                UserWorkExperience = newRegularUserss.UserWorkExperience,
-                UserKeyWords = newRegularUserss.UserKeyWords
+              var finalRegularUser = Mapper.Map<Entities.RegularUser>(newRegularUserss);
 
-            };
-            RegularUserss.Add(finalRegularuser);
+           _hrResorcesInterface.AddNewRegularUser(finalRegularUser);
+
+           if (!_hrResorcesInterface.Save())
+
+           {
+               return StatusCode(500, "nije sačuvano");
+           }
 
 
-            return CreatedAtRoute(new
-            { }, finalRegularuser);
+
+
+
+           return CreatedAtRoute(new
+           { }, finalRegularUser);
+
+
+
+            /*var RegularUserss = RegularUserDataStore.Current.RegularUsers;
+
+           if (RegularUserss == null)
+           {
+               return NotFound();
+           }
+
+           var maxRegularUsersId = RegularUserDataStore.Current.RegularUsers.Max(c => c.UserId);
+
+           var finalRegularuser = new RegularUserDto()
+           {
+               UserId = ++maxRegularUsersId,
+               UserName = newRegularUserss.UserName,
+               UserSurname = newRegularUserss.UserSurname,
+               UserCity = newRegularUserss.UserCity,
+               UserVilingToChangeLocation = newRegularUserss.UserVilingToChangeLocation,
+               UserFullTimeJob = newRegularUserss.UserFullTimeJob,
+               UserWorkExperience = newRegularUserss.UserWorkExperience,
+               UserKeyWords = newRegularUserss.UserKeyWords
+
+           };
+           RegularUserss.Add(finalRegularuser);
+
+
+           return CreatedAtRoute(new
+           { }, finalRegularuser);*/
         }
 
-       [HttpPut("{Id}")]
+        [HttpPut("{Id}")]
         public IActionResult UpdateRegularUser(int id,
      [FromBody] RegularUserForUpdateDto newRegularUserss)
         {

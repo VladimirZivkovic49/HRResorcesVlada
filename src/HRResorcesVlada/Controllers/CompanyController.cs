@@ -91,13 +91,13 @@ namespace HRResorcesVlada.Controllers
               {
                   return BadRequest("Ime postoji");
               }*/
-            if (_hrResorcesInterface.CompanyExists(name))
+           if (_hrResorcesInterface.CompanyExists(name))
             {
                 return BadRequest("Postoji Kompanija  pod tim imenom");
 
             }
 
-            var finalCompany = Mapper.Map<Entities.Company>(newCompanys);
+           var finalCompany = Mapper.Map<Entities.Company>(newCompanys);
 
             _hrResorcesInterface.AddNewCompany(finalCompany);
 

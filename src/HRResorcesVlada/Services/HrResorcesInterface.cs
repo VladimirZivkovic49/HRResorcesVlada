@@ -17,6 +17,9 @@ namespace HRResorcesVlada.Services
 
         bool Save();
         bool CompanyExists(string name);
+        bool RegularUserExists(string regularUserName);
+        bool RegularUserExistss(string regularUserSurname);
+        void AddNewRegularUser(RegularUser newRegularUserss);
 
         IEnumerable<RegularUser> GetRegularUsers();
 

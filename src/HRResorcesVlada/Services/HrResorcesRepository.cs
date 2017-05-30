@@ -23,6 +23,11 @@ namespace HRResorcesVlada.Services
             _context.Companies.Add(newCompanys);
         }
 
+        public void AddNewRegularUser(RegularUser newRegularUserss)
+        {
+            _context.RegularUsers.Add(newRegularUserss);
+        }
+
         public bool CompanyExists(string name)
         {
             return _context.Companies.Any(c => c.Name == name);
@@ -56,6 +61,16 @@ namespace HRResorcesVlada.Services
         public IEnumerable<RegularUser> GetRegularUsers()
         {
              return _context.RegularUsers.OrderBy(c => c.UserName).ToList();
+        }
+
+        public bool RegularUserExists(string regularUserName)
+        {
+            return _context.RegularUsers.Any(c => c.UserName == regularUserName);
+        }
+
+        public bool RegularUserExistss(string regularUserSurname)
+        {
+            return _context.RegularUsers.Any(c => c.UserSurname == regularUserSurname);
         }
 
         public bool Save()

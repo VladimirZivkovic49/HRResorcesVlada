@@ -216,7 +216,7 @@ namespace HRResorcesVlada.Controllers
 
             var companyToPatch = Mapper.Map<CompanyForUpdateDto>(companyEntity);
 
-            patchDoc.ApplyTo(companyToPatch, ModelState);
+           /* patchDoc.ApplyTo(companyToPatch, ModelState);
 
             if (!ModelState.IsValid)
             {
@@ -239,7 +239,7 @@ namespace HRResorcesVlada.Controllers
             {
 
                 return StatusCode(500, "nije sačuvano");
-            }
+            }*/
 
             return NoContent();
         }

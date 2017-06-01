@@ -20,8 +20,11 @@ namespace HRResorcesVlada.Services
         bool RegularUserExists(string regularUserName);
         bool RegularUserExistss(string regularUserSurname);
         void AddNewRegularUser(RegularUser newRegularUserss);
-
+        bool RegularUserExistsPatch(string name);
+        bool RegularUserExistsPatchh(string surname);
         IEnumerable<RegularUser> GetRegularUsers();
-
+        
+        RegularUser GetRegularUser(string name);
+        RegularUser GetRegularUserSur(string surname);
     }
 }

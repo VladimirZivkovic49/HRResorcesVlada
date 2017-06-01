@@ -58,14 +58,34 @@ namespace HRResorcesVlada.Services
             return _context.Jobpositions.ToList();
         }
 
+        public RegularUser GetRegularUser(string name)
+        {
+            return _context.RegularUsers.Where(c => c.UserName == name ).FirstOrDefault();
+        }
+
         public IEnumerable<RegularUser> GetRegularUsers()
         {
              return _context.RegularUsers.OrderBy(c => c.UserName).ToList();
         }
 
+        public RegularUser GetRegularUserSur(string surname)
+        {
+             return _context.RegularUsers.Where(c => c.UserSurname == surname ).FirstOrDefault();
+        }
+
         public bool RegularUserExists(string regularUserName)
         {
             return _context.RegularUsers.Any(c => c.UserName == regularUserName);
+        }
+
+        public bool RegularUserExistsPatch(string name)
+        {
+            return _context.RegularUsers.Any(c => c.UserName == name);
+        }
+
+        public bool RegularUserExistsPatchh(string surname)
+        {
+            return _context.RegularUsers.Any(c => c.UserName ==surname);
         }
 
         public bool RegularUserExistss(string regularUserSurname)

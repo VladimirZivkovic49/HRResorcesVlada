@@ -61,7 +61,7 @@ namespace HRResorcesVlada.Controllers
             string regularUserName = newRegularUserss.UserName;
             string regularUserSurname = newRegularUserss.UserSurname;
 
-             if (_hrResorcesInterface.RegularUserExists(regularUserName) && _hrResorcesInterface.RegularUserExistss(regularUserSurname) )
+             if (_hrResorcesInterface.RegularUserExists(regularUserName) && _hrResorcesInterface.RegularUserExistsPatchh(regularUserSurname) )
                        {
                            return BadRequest("Postoji Korisnik  pod tim imenom");
 
@@ -144,8 +144,8 @@ namespace HRResorcesVlada.Controllers
 
         }
 
-       [HttpPatch("{Id}")]
-        public IActionResult UpdateRegularUser(int id,
+       [HttpPatch("{name}/{surname}")]
+        public IActionResult UpdateRegularUser(string name,string surname,
           [FromBody]JsonPatchDocument<RegularUserForUpdateDto> patchDoc)
         {
             if (patchDoc == null)
@@ -153,7 +153,47 @@ namespace HRResorcesVlada.Controllers
 
                 BadRequest();
             }
-            var RegularUsersFromStore = RegularUserDataStore.Current.RegularUsers.FirstOrDefault(p => p.UserId == id);
+            if (!_hrResorcesInterface.RegularUserExistsPatch(name) &&! _hrResorcesInterface.RegularUserExistsPatchh(surname))
+            {
+                return BadRequest("Korisnik ne postoji");
+            }
+             var regulaUserEntity = _hrResorcesInterface.GetRegularUser(name);
+             var regularUserEntitys = _hrResorcesInterface.GetRegularUserSur(surname);
+
+            if (regulaUserEntity == null && regularUserEntitys==null)
+            {
+                return NotFound();
+
+            }
+
+             var regularUserToPatch = Mapper.Map<RegularUserForUpdateDto>(regulaUserEntity);
+
+             patchDoc.ApplyTo(regularUserToPatch , ModelState);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+
+            TryValidateModel(regularUserToPatch);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Mapper.Map(regularUserToPatch , regulaUserEntity);
+
+
+
+            if (!_hrResorcesInterface.Save())
+            {
+
+                return StatusCode(500, "nije sačuvano");
+            }
+
+            /*    var RegularUsersFromStore = RegularUserDataStore.Current.RegularUsers.FirstOrDefault(p => p.UserId == id);
 
             if (RegularUsersFromStore == null)
             {
@@ -179,7 +219,7 @@ namespace HRResorcesVlada.Controllers
             RegularUsersFromStore.UserVilingToChangeLocation = regularUserToPatch.UserVilingToChangeLocation;
             RegularUsersFromStore.UserFullTimeJob = regularUserToPatch.UserFullTimeJob;
             RegularUsersFromStore.UserWorkExperience = regularUserToPatch.UserWorkExperience;
-            RegularUsersFromStore.UserKeyWords = regularUserToPatch.UserKeyWords;
+            RegularUsersFromStore.UserKeyWords = regularUserToPatch.UserKeyWords;*/
 
             return NoContent();
         }

@@ -30,5 +30,7 @@ namespace HRResorcesVlada.Services
         void DeliteRegularUser(RegularUser regularUserNameDelite);
         bool JobPositionExists(string newJobPositionss);
         void AddNewJobPosition(JobPosition newJobPositionss);
+        bool JobPositionExists(int id);
+        void DeliteJobPosition(JobPosition jobPositionDelite);
     }
 }

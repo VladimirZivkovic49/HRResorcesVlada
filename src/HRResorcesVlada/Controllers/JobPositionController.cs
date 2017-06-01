@@ -108,13 +108,13 @@ namespace HRResorcesVlada.Controllers
                         return BadRequest();
                     }
 
-            string jobPositionName = newJobPositionss.JobName;
+          /*  string jobPositionName = newJobPositionss.JobName;
 
              if (_hrResorcesInterface.JobPositionExists(jobPositionName))
              {
                  return BadRequest("Postoji Pozicija  pod tim imenom");
 
-             }
+             }*/
 
             var finalJobPosition = Mapper.Map<Entities.JobPosition>(newJobPositionss);
 
@@ -211,33 +211,85 @@ namespace HRResorcesVlada.Controllers
 
                         BadRequest();
                     }
-                    var JobPositionFromStore = JobPositionDataStore.Current.JobPositions.FirstOrDefault(p => p.JobId == id);
 
-                    if (JobPositionFromStore == null)
+               if (!_hrResorcesInterface.JobPositionExists(id))
+               {
+             return NotFound("Ne postoji Pozicija   pod tim Id");
+
+              }
+
+         var jobPositionEntity = _hrResorcesInterface.GetJobPositio(id);
+
+              if (jobPositionEntity == null)
+
                     {
-                        return NotFound();
+                  return NotFound();
+
                     }
-                    var jobPositionToPatch = new JobPositionForUpdateDto()
-                    {
-                        JobName = JobPositionFromStore.JobName,
-                        JobDescription = JobPositionFromStore.JobDescription,
-                        JobCity = JobPositionFromStore.JobCity,
-                        JobCountry = JobPositionFromStore.JobCountry,
-                        JobPartTime = JobPositionFromStore.JobPartTime,
-                        JobKeyWords = JobPositionFromStore.JobKeyWords
 
-                    };
 
-                    patchDoc.ApplyTo(jobPositionToPatch);
+                    var jobPositionToPatch = Mapper.Map<JobPositionForUpdateDto>(jobPositionEntity);
 
-            JobPositionFromStore.JobName =jobPositionToPatch.JobName;
-            JobPositionFromStore.JobDescription = jobPositionToPatch.JobDescription;
-            JobPositionFromStore.JobCity = jobPositionToPatch.JobCity;
-            JobPositionFromStore.JobPartTime = jobPositionToPatch.JobPartTime;
-            JobPositionFromStore.JobKeyWords = jobPositionToPatch.JobKeyWords;
-            JobPositionFromStore.JobCountry = jobPositionToPatch.JobCountry;
-                  
-                    return NoContent();
+                   patchDoc.ApplyTo(jobPositionToPatch, ModelState);
+
+                  if (!ModelState.IsValid)
+
+                   {
+
+                return BadRequest(ModelState);
+
+                   }
+
+
+                        TryValidateModel(jobPositionToPatch);
+
+                       if (!ModelState.IsValid)
+
+                        {
+
+                      return BadRequest(ModelState);
+
+                        }
+
+                      Mapper.Map(jobPositionToPatch, jobPositionEntity);
+
+
+
+                       if (!_hrResorcesInterface.Save())
+
+                      {
+
+                      return StatusCode(500, "nije sačuvano");
+
+                       }
+
+            /*  var JobPositionFromStore = JobPositionDataStore.Current.JobPositions.FirstOrDefault(p => p.JobId == id);
+
+            if (JobPositionFromStore == null)
+            {
+                return NotFound();
+            }
+            var jobPositionToPatch = new JobPositionForUpdateDto()
+            {
+                JobName = JobPositionFromStore.JobName,
+                JobDescription = JobPositionFromStore.JobDescription,
+                JobCity = JobPositionFromStore.JobCity,
+                JobCountry = JobPositionFromStore.JobCountry,
+                JobPartTime = JobPositionFromStore.JobPartTime,
+                JobKeyWords = JobPositionFromStore.JobKeyWords
+
+            };
+
+            patchDoc.ApplyTo(jobPositionToPatch);
+
+    JobPositionFromStore.JobName =jobPositionToPatch.JobName;
+    JobPositionFromStore.JobDescription = jobPositionToPatch.JobDescription;
+    JobPositionFromStore.JobCity = jobPositionToPatch.JobCity;
+    JobPositionFromStore.JobPartTime = jobPositionToPatch.JobPartTime;
+    JobPositionFromStore.JobKeyWords = jobPositionToPatch.JobKeyWords;
+    JobPositionFromStore.JobCountry = jobPositionToPatch.JobCountry;*/
+
+            return NoContent();
                 }
 
           [HttpDelete("{Id}")]
@@ -246,7 +298,44 @@ namespace HRResorcesVlada.Controllers
            
        
         {
-            var JobPositionDelite = JobPositionDataStore.Current.JobPositions.FirstOrDefault(c =>c.JobId == id);
+               if (!_hrResorcesInterface.JobPositionExists(id))
+              {
+                  return NotFound("Ne postoji Pozicija  pod tim Id");
+
+              }
+
+              var jobPositionDelite = _hrResorcesInterface.GetJobPositio(id);
+
+              if (jobPositionDelite == null)
+              {
+
+                  return NotFound();
+              }
+
+             _hrResorcesInterface.DeliteJobPosition(jobPositionDelite);
+
+              if (!_hrResorcesInterface.Save())
+              {
+
+                  return StatusCode(500, "nije sačuvano");
+              }
+
+              return NoContent();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /* var JobPositionDelite = JobPositionDataStore.Current.JobPositions.FirstOrDefault(c =>c.JobId == id);
 
             if (JobPositionDelite == null)
             {
@@ -255,7 +344,7 @@ namespace HRResorcesVlada.Controllers
 
             JobPositionDataStore.Current.JobPositions.Remove(JobPositionDelite);
 
-            return NoContent();
+            return NoContent();*/
         }
     }
 }

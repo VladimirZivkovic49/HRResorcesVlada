@@ -58,6 +58,8 @@ namespace HRResorcesVlada
                 cfg.CreateMap<Entities.RegularUser, Models.RegularUserForUpdateDto>().ReverseMap();
                 cfg.CreateMap<Entities.RegularUser, Models.RegularUserCreationDto>().ReverseMap();
                 cfg.CreateMap<Entities.RegularUser, Models.RegularUserForList>().ReverseMap();
+                 cfg.CreateMap<Entities.JobPosition, Models.JobPositionForList>().ReverseMap();
+                 cfg.CreateMap<Entities.JobPosition, Models.JobPositionForCreationDto>().ReverseMap();
             });
             
 

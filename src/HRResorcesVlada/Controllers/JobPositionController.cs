@@ -1,4 +1,6 @@
-﻿using HRResorcesVlada.Models;
+﻿using AutoMapper;
+using HRResorcesVlada.Models;
+using HRResorcesVlada.Services;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,13 +14,24 @@ namespace HRResorcesVlada.Controllers
     [Route("api/jobs")]
     public class JobPositionController : Controller
     {
+        private HrResorcesInterface _hrResorcesInterface;
+
+               public JobPositionController(HrResorcesInterface hrResorcesInterface)
+               {
+                   _hrResorcesInterface = hrResorcesInterface;
+               }
+
+
+
+
 
         [HttpGet()]
         public IActionResult GetJobPisitions()
 
         {
-
-            return Ok(JobPositionDataStore.Current.JobPositions);
+             var jobPositionEntities = _hrResorcesInterface.GetJobPositions();
+            var results = Mapper.Map<IEnumerable<JobPositionForList>>(jobPositionEntities);
+            return Ok(results);
 
         }
 
@@ -86,7 +99,7 @@ namespace HRResorcesVlada.Controllers
       
     
         [HttpPost()]
-        public IActionResult CreateNewJobPosition(int Id, [FromBody] JobPositionForCreationDto newJobPositionss)
+        public IActionResult CreateNewJobPosition( [FromBody] JobPositionForCreationDto newJobPositionss)
 
                 {
                     if (newJobPositionss == null)
@@ -94,63 +107,102 @@ namespace HRResorcesVlada.Controllers
                     {
                         return BadRequest();
                     }
-                    var JobPositionss = JobPositionDataStore.Current.JobPositions;
 
-                    if (JobPositionss == null)
-                    {
-                        return NotFound();
-                    }
+            string jobPositionName = newJobPositionss.JobName;
 
-                    var maxJobPositionsId = JobPositionDataStore.Current.JobPositions.Max(c => c.JobId);
+             if (_hrResorcesInterface.JobPositionExists(jobPositionName))
+             {
+                 return BadRequest("Postoji Pozicija  pod tim imenom");
 
-                    var finalJobPosition = new JobPositionDto()
-                    {
-                        JobId = ++ maxJobPositionsId,
-                        JobName = newJobPositionss.JobName,
-                       JobDescription = newJobPositionss.JobDescription,
-                        JobCity = newJobPositionss.JobCity,
-                       JobCountry = newJobPositionss.JobCountry,
-                        JobPartTime = newJobPositionss.JobPartTime,
-                       JobKeyWords = newJobPositionss.JobKeyWords,
-                       
+             }
 
-                    };
-                    JobPositionss.Add(finalJobPosition);
+            var finalJobPosition = Mapper.Map<Entities.JobPosition>(newJobPositionss);
 
+           _hrResorcesInterface.AddNewJobPosition(finalJobPosition);
 
-                    return CreatedAtRoute( new
-                    { }, finalJobPosition);
-                }
+           if (!_hrResorcesInterface.Save())
 
-        [HttpPut("{Id}")]
-        public IActionResult UpdateJobPosition(int id,
-     [FromBody] JobPositionForUpdateDto newJobPositionss)
-        {
-            if (newJobPositionss == null)
-
-            {
-                return BadRequest();
-            }
-
-            var JobPositionsFromStore = JobPositionDataStore.Current.JobPositions.FirstOrDefault(p =>p.JobId==id);
-
-            if (JobPositionsFromStore  == null)
-            {
-                return NotFound();
-            }
-            JobPositionsFromStore.JobName = newJobPositionss.JobName;
-            JobPositionsFromStore.JobDescription = newJobPositionss.JobDescription;
-            JobPositionsFromStore.JobCity = newJobPositionss.JobCity;
-            JobPositionsFromStore.JobCountry = newJobPositionss.JobCountry;
-            JobPositionsFromStore.JobPartTime = newJobPositionss.JobPartTime;
-            JobPositionsFromStore.JobKeyWords = newJobPositionss.JobKeyWords;
+           {
+               return StatusCode(500, "nije sačuvano");
+           }
 
 
 
-            return NoContent();
 
+
+           return CreatedAtRoute(new
+           { }, finalJobPosition);
+
+
+
+
+
+            // var JobPositionss = JobPositionDataStore.Current.JobPositions;
+
+
+
+
+
+
+
+
+
+
+            /* if (JobPositionss == null)
+                     {
+                         return NotFound();
+                     }
+
+                     var maxJobPositionsId = JobPositionDataStore.Current.JobPositions.Max(c => c.JobId);
+
+                     var finalJobPosition = new JobPositionDto()
+                     {
+                         JobId = ++ maxJobPositionsId,
+                         JobName = newJobPositionss.JobName,
+                        JobDescription = newJobPositionss.JobDescription,
+                         JobCity = newJobPositionss.JobCity,
+                        JobCountry = newJobPositionss.JobCountry,
+                         JobPartTime = newJobPositionss.JobPartTime,
+                        JobKeyWords = newJobPositionss.JobKeyWords,
+
+
+                     };
+                     JobPositionss.Add(finalJobPosition);*/
+
+
+            /*   return CreatedAtRoute( new
+                       { }, finalJobPosition);*/
         }
-          [HttpPatch("{Id}")]
+
+        /*   [HttpPut("{Id}")]
+           public IActionResult UpdateJobPosition(int id,
+        [FromBody] JobPositionForUpdateDto newJobPositionss)
+           {
+               if (newJobPositionss == null)
+
+               {
+                   return BadRequest();
+               }
+
+               var JobPositionsFromStore = JobPositionDataStore.Current.JobPositions.FirstOrDefault(p =>p.JobId==id);
+
+               if (JobPositionsFromStore  == null)
+               {
+                   return NotFound();
+               }
+               JobPositionsFromStore.JobName = newJobPositionss.JobName;
+               JobPositionsFromStore.JobDescription = newJobPositionss.JobDescription;
+               JobPositionsFromStore.JobCity = newJobPositionss.JobCity;
+               JobPositionsFromStore.JobCountry = newJobPositionss.JobCountry;
+               JobPositionsFromStore.JobPartTime = newJobPositionss.JobPartTime;
+               JobPositionsFromStore.JobKeyWords = newJobPositionss.JobKeyWords;
+
+
+
+               return NoContent();
+
+           }*/
+        [HttpPatch("{Id}")]
                 public IActionResult UpdateJobPosition(int id,
                   [FromBody]JsonPatchDocument<JobPositionForUpdateDto> patchDoc)
                 {

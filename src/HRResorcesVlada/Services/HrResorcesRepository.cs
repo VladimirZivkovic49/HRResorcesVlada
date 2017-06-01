@@ -23,6 +23,11 @@ namespace HRResorcesVlada.Services
             _context.Companies.Add(newCompanys);
         }
 
+        public void AddNewJobPosition(JobPosition newJobPositionss)
+        {
+             _context.Jobpositions.Add(newJobPositionss);
+        }
+
         public void AddNewRegularUser(RegularUser newRegularUserss)
         {
             _context.RegularUsers.Add(newRegularUserss);
@@ -35,7 +40,7 @@ namespace HRResorcesVlada.Services
 
         public void DeliteCompany(Company newCompanys)
         {
-           // _context.Companies.Remove(newCompanys);
+            _context.Companies.Remove(newCompanys);
         }
 
         public void DeliteRegularUser(RegularUser regularUserNameDelite)
@@ -76,6 +81,11 @@ namespace HRResorcesVlada.Services
         public RegularUser GetRegularUserSur(string surname)
         {
              return _context.RegularUsers.Where(c => c.UserSurname == surname ).FirstOrDefault();
+        }
+
+        public bool JobPositionExists(string newJobPositionss)
+        {
+            return _context.Jobpositions.Any(c => c.JobName == newJobPositionss);
         }
 
         public bool RegularUserExists(string regularUserName)

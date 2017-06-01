@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HRResorcesVlada.Models;
 
 namespace HRResorcesVlada.Services
 {
@@ -27,5 +28,7 @@ namespace HRResorcesVlada.Services
         RegularUser GetRegularUser(string name);
         RegularUser GetRegularUserSur(string surname);
         void DeliteRegularUser(RegularUser regularUserNameDelite);
+        bool JobPositionExists(string newJobPositionss);
+        void AddNewJobPosition(JobPosition newJobPositionss);
     }
 }

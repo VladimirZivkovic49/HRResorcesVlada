@@ -26,5 +26,6 @@ namespace HRResorcesVlada.Services
         
         RegularUser GetRegularUser(string name);
         RegularUser GetRegularUserSur(string surname);
+        void DeliteRegularUser(RegularUser regularUserNameDelite);
     }
 }

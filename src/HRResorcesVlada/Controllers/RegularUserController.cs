@@ -224,20 +224,57 @@ namespace HRResorcesVlada.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{Id}")]
+        [HttpDelete("{name}/{surname}")]
 
-        public IActionResult deliteRegularUser(int id)
+        public IActionResult deliteRegularUser(string name, string surname)
            
        
         {
-            var RegularUserDelite = RegularUserDataStore.Current.RegularUsers.FirstOrDefault(c =>c.UserId == id);
+            if (!_hrResorcesInterface.RegularUserExistsPatch(name) && !_hrResorcesInterface.RegularUserExistsPatchh(surname))
+            {
+                return BadRequest("Korisnik ne postoji");
+            }
+            var regulaUserEntity = _hrResorcesInterface.GetRegularUser(name);
+            var regularUserEntitys = _hrResorcesInterface.GetRegularUserSur(surname);
+
+            if (regulaUserEntity == null && regularUserEntitys == null)
+            {
+                return NotFound();
+
+            }
+             var regularUserNameDelite = _hrResorcesInterface.GetRegularUser(name);
+            var regularUserSurnameDelite =_hrResorcesInterface.GetRegularUserSur(surname);
+           
+            
+            if (regularUserNameDelite == null && regularUserSurnameDelite == null)
+           {
+
+               return NotFound();
+           }
+
+          _hrResorcesInterface.DeliteRegularUser(regularUserNameDelite);
+
+           if (!_hrResorcesInterface.Save())
+           {
+
+               return StatusCode(500, "nije sačuvano");
+           }
+
+
+
+
+
+
+
+
+            /* var RegularUserDelite = RegularUserDataStore.Current.RegularUsers.FirstOrDefault(c =>c.UserId == id);
 
             if (RegularUserDelite == null)
             {
                 return NotFound();
             }
 
-            RegularUserDataStore.Current.RegularUsers.Remove(RegularUserDelite);
+            RegularUserDataStore.Current.RegularUsers.Remove(RegularUserDelite);*/
 
             return NoContent();
         }

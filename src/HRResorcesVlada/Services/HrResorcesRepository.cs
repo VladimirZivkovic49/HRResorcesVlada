@@ -35,7 +35,12 @@ namespace HRResorcesVlada.Services
 
         public void DeliteCompany(Company newCompanys)
         {
-            _context.Companies.Remove(newCompanys);
+           // _context.Companies.Remove(newCompanys);
+        }
+
+        public void DeliteRegularUser(RegularUser regularUserNameDelite)
+        {
+             _context.RegularUsers.Remove(regularUserNameDelite);
         }
 
         public IEnumerable<Company> GetCompanies()

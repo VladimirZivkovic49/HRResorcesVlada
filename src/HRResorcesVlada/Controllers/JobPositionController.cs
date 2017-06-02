@@ -35,66 +35,136 @@ namespace HRResorcesVlada.Controllers
 
         }
 
-      /*  [HttpGet("id")]
-        public IActionResult GetJobPosition(int id)
-        {
-            var jobPositionToReturn = JobPositionDataStore.Current.JobPositions.FirstOrDefault(c => c.Id == id);
+        /*  [HttpGet("id")]
+          public IActionResult GetJobPosition(int id)
+          {
+              var jobPositionToReturn = JobPositionDataStore.Current.JobPositions.FirstOrDefault(c => c.Id == id);
 
-            if (jobPositionToReturn == null)
-            {
-                return NotFound();
+              if (jobPositionToReturn == null)
+              {
+                  return NotFound();
 
-            }
-            return Ok(jobPositionToReturn);
-        }*/
-     
-       [HttpGet("{city}")]
+              }
+              return Ok(jobPositionToReturn);
+          }*/
+
+        [HttpGet("{city}")]
         public IActionResult GetJobPositionscity(string city)
         {
-            var jobPositionToReturn = JobPositionDataStore.Current.JobPositions.FindAll(c=>c.JobCity==city);
-
-            if (jobPositionToReturn.Count == 0)
+            if (city == null)
 
             {
+                return BadRequest();
+            }
+            var jobPositionName = _hrResorcesInterface.GetJobPositionsName(city);
+            var results = Mapper.Map<IEnumerable<JobPositionForList>>(jobPositionName);
+            int proba = results.Count();
 
-             var jobPositionToReturnKeyWords = JobPositionDataStore.Current.JobPositions.FindAll(c => c.JobCountry == city);
+            if (proba == 0) 
+            {
+                var jobPositionDesription = _hrResorcesInterface.GetJobPositionsDescription(city);
+                var resultsD = Mapper.Map<IEnumerable<JobPositionForList>>(jobPositionDesription);
+                int probaD = resultsD.Count();
 
-             if (jobPositionToReturnKeyWords.Count == 0)
-
+                if (probaD == 0)
                 {
+                    var jobPositionGrad = _hrResorcesInterface.GetJobPositionsGrad(city);
+                    var resultsC = Mapper.Map<IEnumerable<JobPositionForList>>(jobPositionGrad);
+                    int probaC = resultsC.Count();
 
-               var jobPositionToReturnKeyWord = JobPositionDataStore.Current.JobPositions.FindAll(c => c.JobKeyWords == city);
 
-               if (jobPositionToReturnKeyWord.Count == 0)
+
+                    if (probaC == 0)
 
                     {
 
-                   var jobPositionToReturnFullTime = JobPositionDataStore.Current.JobPositions.FindAll(c => c.JobPartTime == city);
+                        var jobPositionDrzava = _hrResorcesInterface.GetJobPositionsDrzava(city);
+                        var resultsCa = Mapper.Map<IEnumerable<JobPositionForList>>(jobPositionDrzava);
+                        int probaCa = resultsCa.Count();
 
-                   if (jobPositionToReturnFullTime.Count == 0)
+
+
+                        if (probaCa == 0)
 
                         {
-                            return NotFound();
+                            var jobPositionPartTime = _hrResorcesInterface.GetJobPositionsParTime(city);
+                            var resultsPt = Mapper.Map<IEnumerable<JobPositionForList>>(jobPositionPartTime);
+                            int probaPt = resultsPt.Count();
+                            if (probaPt == 0)
+
+                            {
+                                var jobPositionKljRe = _hrResorcesInterface.GetJobPositionsKljRe(city);
+                                var resultsKljRe = Mapper.Map<IEnumerable<JobPositionForList>>(jobPositionKljRe);
+                                int probaKljRe = resultsKljRe.Count();
+                                if (probaKljRe == 0)
+                                {
+                                    return NotFound();
+
+                                }
+                                return Ok(resultsPt);
+
+                            }
+                            return Ok(resultsPt);
+
+                        }
+                        return Ok(resultsCa);
+                    }
+                    return Ok(resultsC);
+                }
+                return Ok(resultsD);
+            }
+
+            return Ok(results);
+        }                
+        
+        
+        
+        
+        
+        /*  var jobPositionToReturn = JobPositionDataStore.Current.JobPositions.FindAll(c=>c.JobCity==city);
+
+                        if (jobPositionToReturn.Count == 0)
+
+                        {
+
+                         var jobPositionToReturnKeyWords = JobPositionDataStore.Current.JobPositions.FindAll(c => c.JobCountry == city);
+
+                         if (jobPositionToReturnKeyWords.Count == 0)
+
+                            {
+
+                           var jobPositionToReturnKeyWord = JobPositionDataStore.Current.JobPositions.FindAll(c => c.JobKeyWords == city);
+
+                           if (jobPositionToReturnKeyWord.Count == 0)
+
+                                {
+
+                               var jobPositionToReturnFullTime = JobPositionDataStore.Current.JobPositions.FindAll(c => c.JobPartTime == city);
+
+                               if (jobPositionToReturnFullTime.Count == 0)
+
+                                    {
+                                        return NotFound();
+                                    }
+
+                                    return Ok(jobPositionToReturnFullTime);
+
+                                }
+
+                            return Ok(jobPositionToReturnKeyWord);
+
+                            }
+
+                            return Ok(jobPositionToReturnKeyWords);
                         }
 
-                        return Ok(jobPositionToReturnFullTime);
+                        if (jobPositionToReturn.Count == 0)
+                        {
+                            return NotFound();
 
-                    }
-
-                return Ok(jobPositionToReturnKeyWord);
-
-                }
-
-                return Ok(jobPositionToReturnKeyWords);
-            }
-
-            if (jobPositionToReturn.Count == 0)
-            {
-                return NotFound();
-
-            }
-            return Ok(jobPositionToReturn);
-        }
+                        }*/
+                       
+        
 
       
     

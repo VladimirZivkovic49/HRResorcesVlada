@@ -73,6 +73,36 @@ namespace HRResorcesVlada.Services
             return _context.Jobpositions.ToList();
         }
 
+        public IEnumerable<JobPosition> GetJobPositionsDescription(string city)
+        {
+              return _context.Jobpositions.Where(c => c.JobDescription==city).ToList();
+        }
+
+        public IEnumerable<JobPosition> GetJobPositionsDrzava(string city)
+        {
+             return _context.Jobpositions.Where(c => c.JobCity==city).ToList();
+        }
+
+        public IEnumerable<JobPosition> GetJobPositionsGrad(string city)
+        {
+             return _context.Jobpositions.Where(c => c.JobCity==city).ToList();
+        }
+
+        public IEnumerable<JobPosition> GetJobPositionsKljRe(string city)
+        {
+             return _context.Jobpositions.Where(c => c.JobKeyWords==city).ToList();
+        }
+
+        public IEnumerable<JobPosition> GetJobPositionsName(string city)
+        {
+            return _context.Jobpositions.Where(c => c.JobName == city).ToList();
+        }
+
+        public IEnumerable<JobPosition> GetJobPositionsParTime(string city)
+        {
+             return _context.Jobpositions.Where(c => c.JobPartTime==city).ToList();
+        }
+
         public RegularUser GetRegularUser(string name)
         {
             return _context.RegularUsers.Where(c => c.UserName == name ).FirstOrDefault();

@@ -8,7 +8,7 @@ using HRResorcesVlada.Entities;
 namespace HRResorcesVlada.Migrations
 {
     [DbContext(typeof(HrResorcesContext))]
-    [Migration("20170603004837_HrResorcesInitialMigration")]
+    [Migration("20170603125542_HrResorcesInitialMigration")]
     partial class HrResorcesInitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,11 +70,15 @@ namespace HRResorcesVlada.Migrations
 
                     b.Property<string>("UserCity");
 
+                    b.Property<string>("UserDateOfBirth");
+
                     b.Property<string>("UserFullTimeJob");
 
                     b.Property<string>("UserKeyWords");
 
                     b.Property<string>("UserName");
+
+                    b.Property<string>("UserSex");
 
                     b.Property<string>("UserSurname");
 

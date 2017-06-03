@@ -9,6 +9,8 @@ namespace HRResorcesVlada.Models
     {
         public string UserName { get; set; }
         public string UserSurname { get; set; }
+        public string UserDateOfBirth { get; set; }
+        public string UserSex { get; set; }
         public string UserCity { get; set; }
         public string UserVilingToChangeLocation { get; set; }
         public string UserFullTimeJob { get; set; }

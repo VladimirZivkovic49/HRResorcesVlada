@@ -53,9 +53,11 @@ namespace HRResorcesVlada.Migrations
                     UserId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     UserCity = table.Column<string>(nullable: true),
+                    UserDateOfBirth = table.Column<string>(nullable: true),
                     UserFullTimeJob = table.Column<string>(nullable: true),
                     UserKeyWords = table.Column<string>(nullable: true),
                     UserName = table.Column<string>(nullable: true),
+                    UserSex = table.Column<string>(nullable: true),
                     UserSurname = table.Column<string>(nullable: true),
                     UserVilingToChangeLocation = table.Column<string>(nullable: true),
                     UserWorkExperience = table.Column<string>(nullable: true)

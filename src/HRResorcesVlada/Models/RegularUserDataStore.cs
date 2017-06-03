@@ -20,7 +20,7 @@ namespace HRResorcesVlada.Models
                 new RegularUserDto()
                 {
             UserId=1,
-           UserName="Vlada",
+            UserName="Vlada",
             UserSurname="Zivkovic",
             UserCity="Novi Sad",
             UserVilingToChangeLocation="Da",

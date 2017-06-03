@@ -69,11 +69,15 @@ namespace HRResorcesVlada.Migrations
 
                     b.Property<string>("UserCity");
 
+                    b.Property<string>("UserDateOfBirth");
+
                     b.Property<string>("UserFullTimeJob");
 
                     b.Property<string>("UserKeyWords");
 
                     b.Property<string>("UserName");
+
+                    b.Property<string>("UserSex");
 
                     b.Property<string>("UserSurname");
 

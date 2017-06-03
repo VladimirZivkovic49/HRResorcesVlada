@@ -95,7 +95,9 @@ namespace HRResorcesVlada
            {
             UserName="Vlada",
             UserSurname="Zivkovic",
-           UserCity="Novi Sad",
+            UserDateOfBirth="19.07.1967",
+            UserSex="Muško",
+            UserCity ="Novi Sad",
             UserVilingToChangeLocation="Da",
             UserFullTimeJob="Da",
             UserWorkExperience=" Da",

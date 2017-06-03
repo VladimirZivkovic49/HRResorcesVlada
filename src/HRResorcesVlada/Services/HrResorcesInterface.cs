@@ -32,13 +32,13 @@ namespace HRResorcesVlada.Services
         void AddNewJobPosition(JobPosition newJobPositionss);
         bool JobPositionExists(int id);
         void DeliteJobPosition(JobPosition jobPositionDelite);
-        IEnumerable<JobPosition> GetJobPositionsName(string city);
-        IEnumerable<JobPosition> GetJobPositionsDescription(string city);
+        IEnumerable<JobPosition> GetJobPositionsName(string name);
+        IEnumerable<JobPosition> GetJobPositionsDescription(string description);
        
         IEnumerable<JobPosition> GetJobPositionsGrad(string city);
        
-        IEnumerable<JobPosition> GetJobPositionsDrzava(string city);
-        IEnumerable<JobPosition> GetJobPositionsParTime(string city);
-        IEnumerable<JobPosition> GetJobPositionsKljRe(string city);
+        IEnumerable<JobPosition> GetJobPositionsDrzava(string country);
+        IEnumerable<JobPosition> GetJobPositionsParTime(string parttime);
+        IEnumerable<JobPosition> GetJobPositionsKljRe(string keywords);
     }
 }

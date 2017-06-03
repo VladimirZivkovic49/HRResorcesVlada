@@ -73,14 +73,14 @@ namespace HRResorcesVlada.Services
             return _context.Jobpositions.ToList();
         }
 
-        public IEnumerable<JobPosition> GetJobPositionsDescription(string city)
+        public IEnumerable<JobPosition> GetJobPositionsDescription(string description)
         {
-              return _context.Jobpositions.Where(c => c.JobDescription==city).ToList();
+              return _context.Jobpositions.Where(c => c.JobDescription==description).ToList();
         }
 
-        public IEnumerable<JobPosition> GetJobPositionsDrzava(string city)
+        public IEnumerable<JobPosition> GetJobPositionsDrzava(string country)
         {
-             return _context.Jobpositions.Where(c => c.JobCountry==city).ToList();
+             return _context.Jobpositions.Where(c => c.JobCountry== country).ToList();
         }
 
         public IEnumerable<JobPosition> GetJobPositionsGrad(string city)
@@ -88,19 +88,19 @@ namespace HRResorcesVlada.Services
              return _context.Jobpositions.Where(c => c.JobCity==city).ToList();
         }
 
-        public IEnumerable<JobPosition> GetJobPositionsKljRe(string city)
+        public IEnumerable<JobPosition> GetJobPositionsKljRe(string keywords)
         {
-             return _context.Jobpositions.Where(c => c.JobKeyWords==city).ToList();
+             return _context.Jobpositions.Where(c => c.JobKeyWords== keywords).ToList();
         }
 
-        public IEnumerable<JobPosition> GetJobPositionsName(string city)
+        public IEnumerable<JobPosition> GetJobPositionsName(string name)
         {
-            return _context.Jobpositions.Where(c => c.JobName == city).ToList();
+            return _context.Jobpositions.Where(c => c.JobName == name).ToList();
         }
 
-        public IEnumerable<JobPosition> GetJobPositionsParTime(string city)
+        public IEnumerable<JobPosition> GetJobPositionsParTime(string parttime)
         {
-             return _context.Jobpositions.Where(c => c.JobPartTime==city).ToList();
+             return _context.Jobpositions.Where(c => c.JobPartTime== parttime).ToList();
         }
 
         public RegularUser GetRegularUser(string name)

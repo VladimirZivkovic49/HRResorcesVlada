@@ -8,7 +8,7 @@ using HRResorcesVlada.Entities;
 namespace HRResorcesVlada.Migrations
 {
     [DbContext(typeof(HrResorcesContext))]
-    [Migration("20170530140618_HrResorcesInitialMigration")]
+    [Migration("20170603004837_HrResorcesInitialMigration")]
     partial class HrResorcesInitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

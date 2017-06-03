@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace HRResorcesVlada
 {
     public static class HrResorcesExtensions
-    {
+   {
 
-     public static void EnsureSeedDataForContext(this HrResorcesContext context)
+   public static void EnsureSeedDataForContext(this HrResorcesContext context)
         {
             if (context.Companies.Any())
             {

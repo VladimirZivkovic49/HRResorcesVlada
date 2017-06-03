@@ -101,7 +101,7 @@ namespace HRResorcesVlada.Controllers
                                     return NotFound();
 
                                 }
-                                return Ok(resultsPt);
+                                return Ok(resultsKljRe);
 
                             }
                             return Ok(resultsPt);

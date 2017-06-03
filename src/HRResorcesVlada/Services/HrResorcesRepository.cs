@@ -80,7 +80,7 @@ namespace HRResorcesVlada.Services
 
         public IEnumerable<JobPosition> GetJobPositionsDrzava(string city)
         {
-             return _context.Jobpositions.Where(c => c.JobCity==city).ToList();
+             return _context.Jobpositions.Where(c => c.JobCountry==city).ToList();
         }
 
         public IEnumerable<JobPosition> GetJobPositionsGrad(string city)

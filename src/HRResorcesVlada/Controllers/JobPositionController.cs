@@ -234,9 +234,9 @@ namespace HRResorcesVlada.Controllers
                         return BadRequest();
                     }
 
-            string companyName = CompanyName;
+           // string companyName = CompanyName;
 
-            if (!_hrResorcesInterface.CompanyExists(companyName))
+            if (!_hrResorcesInterface.CompanyExists(CompanyName))
             {
                 return BadRequest("Ne Postoji Kompanija  pod tim imenom");
 

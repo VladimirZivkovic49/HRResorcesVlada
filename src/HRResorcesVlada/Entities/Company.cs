@@ -10,27 +10,23 @@ namespace HRResorcesVlada.Entities
     public class Company
 
     {
+        
+       // public int Id { get; set; }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        
-
         public string Name { get; set; }
         public string Description { get; set; }
         public string City { get; set; }
-
-      /*  internal void Add()
-        {
-            throw new NotImplementedException();
-        }*/
-
+     
         public string Country { get; set; }
         public string Phone { get; set; }
         public string EmailAdress { get; set; }
         public string WebSite { get; set; }
 
-       
 
-       // public ICollection<Company> Companies { get; set; } 
+
+       public ICollection<JobPosition> Jobpositions { get; set; }
+       = new List<JobPosition>(); 
     }
 }

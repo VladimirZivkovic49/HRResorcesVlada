@@ -13,5 +13,7 @@ namespace HRResorcesVlada.Models
         public string JobCountry { get; set; }
         public string JobPartTime { get; set; }
         public string JobKeyWords { get; set; }
+        public string CompanyName { get; set; }
+
     }
 }

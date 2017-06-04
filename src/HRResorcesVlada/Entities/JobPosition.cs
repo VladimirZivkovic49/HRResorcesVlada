@@ -20,10 +20,10 @@ namespace HRResorcesVlada.Entities
         public string JobPartTime { get; set; }
         public string JobKeyWords { get; set; }
 
-        
-      //  public JobPosition Company { get; set; }
+        [ForeignKey("CompanyName")]
+       // public Company Company { get; set; }
 
-     //   public string CompanyName { get; set; }
+        public string CompanyName { get; set; }
 
     }
 }

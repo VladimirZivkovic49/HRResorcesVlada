@@ -9,7 +9,7 @@ namespace HRResorcesVlada
     public static class HrResorcesExtensions
    {
 
-   public static void EnsureSeedDataForContext(this HrResorcesContext context)
+        public static void EnsureSeedDataForContext(this HrResorcesContext context)
         {
             if (context.Companies.Any())
             {
@@ -66,13 +66,13 @@ namespace HRResorcesVlada
                  new JobPosition()
 
                  {
-                JobName = "Front end",
-                JobDescription = "Java",
-                JobCity = "Novi Sad",
-                JobCountry = "Serbia",
+               JobName = "Front end",
+               JobDescription = "Java",
+               JobCity = "Novi Sad",
+               JobCountry = "Serbia",
                JobPartTime = "Da",
                JobKeyWords = " Iskustvo 5 god",
-
+               CompanyName="ABC"
 
                  },
 

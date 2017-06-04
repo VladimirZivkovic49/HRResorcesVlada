@@ -224,8 +224,8 @@ namespace HRResorcesVlada.Controllers
 
 
 
-        [HttpPost()]
-        public IActionResult CreateNewJobPosition( [FromBody] JobPositionForCreationDto newJobPositionss)
+        [HttpPost("{CompanyName}")]
+        public IActionResult CreateNewJobPosition(string CompanyName, [FromBody] JobPositionForCreationDto newJobPositionss)
 
                 {
                     if (newJobPositionss == null)
@@ -234,13 +234,22 @@ namespace HRResorcesVlada.Controllers
                         return BadRequest();
                     }
 
-          /*  string jobPositionName = newJobPositionss.JobName;
+            string companyName = CompanyName;
 
-             if (_hrResorcesInterface.JobPositionExists(jobPositionName))
-             {
-                 return BadRequest("Postoji Pozicija  pod tim imenom");
+            if (!_hrResorcesInterface.CompanyExists(companyName))
+            {
+                return BadRequest("Ne Postoji Kompanija  pod tim imenom");
 
-             }*/
+            }
+
+
+            /*  string jobPositionName = newJobPositionss.JobName;
+
+     if (_hrResorcesInterface.Exists(jobPositionName))
+     {
+         return BadRequest("Postoji Pozicija  pod tim imenom");
+
+     }*/
 
             var finalJobPosition = Mapper.Map<Entities.JobPosition>(newJobPositionss);
 

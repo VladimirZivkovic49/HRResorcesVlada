@@ -250,7 +250,7 @@ namespace HRResorcesVlada.Controllers
          return BadRequest("Postoji Pozicija  pod tim imenom");
 
      }*/
-
+            newJobPositionss.CompanyName = CompanyName;//zapamtiti kako se ubacuje !!!
             var finalJobPosition = Mapper.Map<Entities.JobPosition>(newJobPositionss);
 
            _hrResorcesInterface.AddNewJobPosition(finalJobPosition);
